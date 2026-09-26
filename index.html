@@ -1,83 +1,1692 @@
-Abhilash KurapatiTechnical interview prep, 30 min with the hiring manager
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Interview prep: Abhilash Kurapati</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --desk:#E4EAF0; --card:#FFFFFF; --ink:#1D2B44; --ink-soft:#56627A; --rule:#D3DBE4;
+  --pen:#2A4DB3; --pen-soft:#E3E9FA; --margin:#D64545; --ok:#1F7A4D; --ok-soft:#DDF1E6;
+  --warn:#9A5B00; --warn-soft:#FBEBD2; --line:#E7EEF7; --code:#F2F5F9;
+  --serif:"Newsreader", Georgia, "Times New Roman", serif;
+  --sans:"Public Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --desk:#131A26; --card:#1C2534; --ink:#E6ECF5; --ink-soft:#A3AFC2; --rule:#2F3B4F;
+    --pen:#8DA8FF; --pen-soft:#243258; --margin:#F07070; --ok:#6FD19C; --ok-soft:#1D3A2C;
+    --warn:#F2B866; --warn-soft:#3D2E17; --line:#253043; --code:#151D2A;
+  }
+}
+:root[data-theme="dark"]{
+  --desk:#131A26; --card:#1C2534; --ink:#E6ECF5; --ink-soft:#A3AFC2; --rule:#2F3B4F;
+  --pen:#8DA8FF; --pen-soft:#243258; --margin:#F07070; --ok:#6FD19C; --ok-soft:#1D3A2C;
+  --warn:#F2B866; --warn-soft:#3D2E17; --line:#253043; --code:#151D2A;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 72px)}
+body{margin:0;background:var(--desk);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--pen);outline-offset:2px;border-radius:4px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.88em;background:var(--code);padding:.1em .35em;border-radius:4px}
+pre{background:var(--code);border:1px solid var(--rule);border-radius:8px;padding:14px;overflow-x:auto;font-size:.85rem;line-height:1.5}
+pre code{background:none;padding:0}
 
-# Every question your resume invites, answered.
+/* ---------- top bar ---------- */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--desk);border-bottom:1px solid var(--rule)}
+.top-inner{max-width:1240px;margin:0 auto;display:flex;align-items:center;gap:16px;padding:12px 20px;flex-wrap:wrap}
+.brand{font-family:var(--serif);font-size:1.25rem;font-weight:600;margin-right:auto;letter-spacing:-.01em}
+.brand small{display:block;font-family:var(--sans);font-size:.8rem;font-weight:500;color:var(--ink-soft);letter-spacing:0}
+.tabs{display:flex;gap:4px;background:var(--card);padding:4px;border-radius:10px;border:1px solid var(--rule)}
+.tab{border:0;background:none;padding:7px 14px;border-radius:7px;cursor:pointer;font-weight:600;font-size:.9rem;color:var(--ink-soft)}
+.tab[aria-selected="true"]{background:var(--pen);color:#fff}
+.icon-btn{border:1px solid var(--rule);background:var(--card);border-radius:8px;padding:7px 10px;cursor:pointer;font-size:.9rem}
 
-Start with the questions marked likely. Read the answer, say it out loud in your own words, then mark it confident or review again.
+main{max-width:1240px;margin:0 auto;padding:24px 20px 80px}
+.view[hidden]{display:none}
 
-**0**questions
+/* ---------- hero ---------- */
+.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:32px;align-items:end;margin-bottom:28px}
+.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(2rem,4.2vw,3.2rem);line-height:1.05;letter-spacing:-.02em;margin:0 0 12px}
+.hero p{color:var(--ink-soft);max-width:56ch;margin:0}
+.countdown{display:flex;gap:28px;flex-wrap:wrap}
+.stat b{display:block;font-family:var(--serif);font-size:2.4rem;font-weight:400;line-height:1}
+.stat span{font-size:.85rem;color:var(--ink-soft)}
+.meter{height:8px;background:var(--card);border:1px solid var(--rule);border-radius:99px;overflow:hidden;margin-top:14px}
+.meter i{display:block;height:100%;background:var(--ok);width:0;transition:width .4s ease}
+.notice{background:var(--warn-soft);color:var(--ink);border-radius:10px;padding:12px 16px;font-size:.92rem;margin:0 0 24px;border:1px solid transparent}
+.notice b{color:var(--warn)}
 
-**0**confident
+/* ---------- layout ---------- */
+.layout{display:grid;grid-template-columns:260px minmax(0,1fr);gap:28px;align-items:start}
+.side{position:sticky;top:calc(env(safe-area-inset-top,0px) + 80px);max-height:calc(100vh - 100px);overflow:auto;padding-right:4px}
+.side h2{font-size:.85rem;font-weight:600;color:var(--ink-soft);margin:0 0 8px}
+.cat-btn{display:block;width:100%;text-align:left;border:0;background:none;padding:8px 10px;border-radius:8px;cursor:pointer;margin-bottom:2px}
+.cat-btn:hover{background:var(--card)}
+.cat-btn[aria-pressed="true"]{background:var(--card);box-shadow:inset 3px 0 0 var(--pen)}
+.cat-btn .row{display:flex;justify-content:space-between;gap:8px;font-size:.92rem;font-weight:500}
+.cat-btn .row em{font-style:normal;color:var(--ink-soft);font-size:.82rem;white-space:nowrap}
+.cat-btn .bar{height:3px;background:var(--rule);border-radius:3px;margin-top:6px;overflow:hidden}
+.cat-btn .bar i{display:block;height:100%;background:var(--ok)}
 
-**0**to review
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
+.search{flex:1 1 240px;border:1px solid var(--rule);background:var(--card);border-radius:10px;padding:10px 14px}
+.chip{border:1px solid var(--rule);background:var(--card);border-radius:99px;padding:7px 13px;cursor:pointer;font-size:.86rem;font-weight:500}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--card);border-color:var(--ink)}
+.cat-head{margin:4px 0 16px}
+.cat-head h2{font-family:var(--serif);font-weight:600;font-size:1.6rem;margin:0 0 4px;letter-spacing:-.01em}
+.cat-head p{margin:0;color:var(--ink-soft)}
+.result-count{font-size:.85rem;color:var(--ink-soft);margin-bottom:10px}
 
-**Adapt before you speak.** Answers are built from your resume. Where they suggest specifics you didn't do (a tool, a metric, a step), replace them with what really happened. A manager will follow up on anything you say.
+/* ---------- question card (index card) ---------- */
+.q{background:var(--card);border-radius:6px;margin-bottom:12px;border:1px solid var(--rule);position:relative}
+.q::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--margin);border-radius:6px 6px 0 0;opacity:.85}
+.q-head{display:flex;gap:14px;align-items:flex-start;padding:18px 18px 16px;cursor:pointer;width:100%;text-align:left;border:0;background:none}
+.q-title{flex:1;font-family:var(--serif);font-size:1.18rem;line-height:1.35;font-weight:600}
+.q-meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;font-family:var(--sans);font-weight:500}
+.tag{font-size:.75rem;padding:2px 8px;border-radius:99px;background:var(--line);color:var(--ink-soft)}
+.tag.hot{background:var(--pen-soft);color:var(--pen)}
+.tag.ok{background:var(--ok-soft);color:var(--ok)}
+.tag.rev{background:var(--warn-soft);color:var(--warn)}
+.chev{flex:none;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--rule);transition:transform .2s ease;font-size:.8rem;margin-top:2px}
+.q[open] .chev{transform:rotate(180deg)}
+.q-body{padding:0 18px 18px;display:none}
+.q[open] .q-body{display:block}
+.answer{border-top:1px dashed var(--rule);padding-top:14px;max-width:78ch}
+.answer ul,.answer ol{padding-left:1.25em;margin:.4em 0}
+.answer li{margin-bottom:.35em}
+.answer p{margin:.4em 0 .6em}
+.box{margin-top:14px;padding:12px 14px;border-radius:8px;font-size:.93rem;max-width:78ch}
+.box.fu{background:var(--line)}
+.box.tip{background:var(--warn-soft)}
+.box h4{margin:0 0 4px;font-size:.85rem;font-weight:700}
+.box ul{margin:0;padding-left:1.2em}
+.status{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+.status button{border:1px solid var(--rule);background:var(--card);border-radius:8px;padding:7px 12px;cursor:pointer;font-size:.86rem;font-weight:600}
+.status button.ok[aria-pressed="true"]{background:var(--ok);border-color:var(--ok);color:#fff}
+.status button.rev[aria-pressed="true"]{background:var(--warn);border-color:var(--warn);color:#fff}
+.empty{background:var(--card);border:1px dashed var(--rule);border-radius:10px;padding:32px;text-align:center;color:var(--ink-soft)}
 
-## Topics
+/* ---------- drill ---------- */
+.drill-wrap{max-width:820px;margin:0 auto}
+.drill-controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:18px}
+.drill-controls select{border:1px solid var(--rule);background:var(--card);border-radius:8px;padding:8px 10px}
+.index-card{background:var(--card);border-radius:4px;min-height:340px;position:relative;padding:48px 40px 32px;
+  background-image:linear-gradient(var(--card) 0 64px, transparent 64px),repeating-linear-gradient(to bottom,transparent 0 31px,var(--line) 31px 32px);
+  box-shadow:0 1px 0 var(--rule),0 18px 40px -24px rgba(29,43,68,.45);border:1px solid var(--rule)}
+.index-card::before{content:"";position:absolute;left:0;right:0;top:63px;height:2px;background:var(--margin);opacity:.7}
+.index-card .cat-label{position:absolute;top:18px;left:40px;font-size:.85rem;color:var(--ink-soft);font-weight:500}
+.index-card .timer{position:absolute;top:18px;right:24px;font-size:.85rem;color:var(--ink-soft);font-variant-numeric:tabular-nums}
+.index-card h2{font-family:var(--serif);font-weight:400;font-size:clamp(1.5rem,3vw,2rem);line-height:1.25;margin:24px 0 20px;letter-spacing:-.01em}
+.index-card .answer{background:var(--card)}
+.drill-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.btn{border:1px solid var(--rule);background:var(--card);border-radius:10px;padding:11px 18px;cursor:pointer;font-weight:600}
+.btn.primary{background:var(--pen);color:#fff;border-color:var(--pen)}
+.btn.ok{background:var(--ok);color:#fff;border-color:var(--ok)}
+.btn.rev{background:var(--warn);color:#fff;border-color:var(--warn)}
+.keys{font-size:.82rem;color:var(--ink-soft);margin-top:14px}
+kbd{border:1px solid var(--rule);border-bottom-width:2px;border-radius:4px;padding:0 5px;font-size:.78rem;background:var(--card)}
 
-Topic From
+/* ---------- numbers + plan ---------- */
+.sheet{max-width:980px}
+.sheet h2{font-family:var(--serif);font-weight:600;font-size:1.7rem;margin:0 0 6px}
+.sheet > p{color:var(--ink-soft);margin:0 0 22px;max-width:64ch}
+.num-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px}
+.num{background:var(--card);border:1px solid var(--rule);border-radius:6px;padding:18px}
+.num b{display:block;font-family:var(--serif);font-size:1.9rem;font-weight:400;line-height:1.1}
+.num .what{font-weight:600;margin:6px 0 6px}
+.num p{margin:0;font-size:.9rem;color:var(--ink-soft)}
+.timeline{list-style:none;padding:0;margin:0;border-left:2px solid var(--rule)}
+.timeline li{position:relative;padding:0 0 24px 26px}
+.timeline li::before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--card);border:2px solid var(--pen)}
+.timeline .t{font-weight:700;color:var(--pen);font-size:.9rem}
+.timeline h3{margin:2px 0 4px;font-family:var(--serif);font-size:1.2rem;font-weight:600}
+.timeline p{margin:0;color:var(--ink-soft);max-width:64ch}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:32px}
+.panel{background:var(--card);border:1px solid var(--rule);border-radius:6px;padding:20px}
+.panel h3{margin:0 0 8px;font-family:var(--serif);font-size:1.2rem}
+.panel ul{margin:0;padding-left:1.2em}
+.panel li{margin-bottom:6px}
 
-0:00
+@media (max-width:900px){
+  .hero,.two{grid-template-columns:1fr}
+  .layout{grid-template-columns:1fr}
+  .side{position:static;max-height:none;display:flex;gap:6px;overflow-x:auto;padding-bottom:6px}
+  .side h2{display:none}
+  .cat-btn{flex:none;width:auto;white-space:nowrap}
+  .cat-btn .bar{display:none}
+  .index-card{padding:48px 20px 24px}
+  .index-card .cat-label{left:20px}
+}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+@media print{
+  .top,.side,.toolbar,.status,.notice{display:none!important}
+  .layout{display:block}
+  .q-body{display:block!important}
+  .q{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-inner">
+    <div class="brand">Abhilash Kurapati<small>Technical interview prep, 30 min with the hiring manager</small></div>
+    <nav class="tabs" role="tablist" aria-label="Sections">
+      <button class="tab" role="tab" data-view="bank" aria-selected="true">Question bank</button>
+      <button class="tab" role="tab" data-view="drill" aria-selected="false">Drill</button>
+      <button class="tab" role="tab" data-view="numbers" aria-selected="false">Your numbers</button>
+      <button class="tab" role="tab" data-view="plan" aria-selected="false">Game plan</button>
+    </nav>
+    <button class="icon-btn" id="themeBtn" aria-label="Toggle dark mode">◐</button>
+  </div>
+</header>
 
-Answer out loud before revealing. Aim for 60 to 90 seconds. Keys: Space show answer, G got it, R review again, → skip.
+<main>
+  <!-- ================= BANK ================= -->
+  <section class="view" id="view-bank">
+    <div class="hero">
+      <div>
+        <h1>Every question your resume invites, answered.</h1>
+        <p>Start with the questions marked likely. Read the answer, say it out loud in your own words, then mark it confident or review again.</p>
+      </div>
+      <div>
+        <div class="countdown">
+          <div class="stat"><b id="statTotal">0</b><span>questions</span></div>
+          <div class="stat"><b id="statOk">0</b><span>confident</span></div>
+          <div class="stat"><b id="statRev">0</b><span>to review</span></div>
+        </div>
+        <div class="meter" aria-hidden="true"><i id="meterFill"></i></div>
+      </div>
+    </div>
 
-## Numbers on your resume
+    <p class="notice"><b>Adapt before you speak.</b> Answers are built from your resume. Where they suggest specifics you didn't do (a tool, a metric, a step), replace them with what really happened. A manager will follow up on anything you say.</p>
 
-Every number invites "how did you measure that?" Know what each one means and the one-line explanation behind it.
+    <div class="layout">
+      <aside class="side" aria-label="Categories">
+        <h2>Topics</h2>
+        <div id="catList"></div>
+      </aside>
+      <div>
+        <div class="toolbar">
+          <input class="search" id="search" type="search" placeholder="Search questions and answers" aria-label="Search questions and answers">
+          <button class="chip" id="fHot" aria-pressed="false">Likely only</button>
+          <button class="chip" data-lvl="1" aria-pressed="false">Warm-up</button>
+          <button class="chip" data-lvl="2" aria-pressed="false">Core</button>
+          <button class="chip" data-lvl="3" aria-pressed="false">Deep dive</button>
+          <button class="chip" id="fRev" aria-pressed="false">Needs review</button>
+          <button class="chip" id="fNew" aria-pressed="false">Not yet marked</button>
+          <button class="chip" id="expandAll" aria-pressed="false">Expand all</button>
+        </div>
+        <div class="cat-head" id="catHead"></div>
+        <div class="result-count" id="resultCount"></div>
+        <div id="qList"></div>
+      </div>
+    </div>
+  </section>
 
-## How the 30 minutes will probably go
+  <!-- ================= DRILL ================= -->
+  <section class="view" id="view-drill" hidden>
+    <div class="drill-wrap">
+      <div class="drill-controls">
+        <label for="drillCat" style="font-weight:600;font-size:.9rem">Topic</label>
+        <select id="drillCat"></select>
+        <label for="drillSet" style="font-weight:600;font-size:.9rem">From</label>
+        <select id="drillSet">
+          <option value="all">All questions</option>
+          <option value="hot">Likely questions</option>
+          <option value="rev">Needs review</option>
+          <option value="new">Not yet marked</option>
+        </select>
+        <span id="drillCount" style="color:var(--ink-soft);font-size:.88rem"></span>
+      </div>
+      <article class="index-card" id="drillCard" aria-live="polite">
+        <span class="cat-label" id="drillLabel"></span>
+        <span class="timer" id="drillTimer">0:00</span>
+        <h2 id="drillQ"></h2>
+        <div id="drillA" hidden></div>
+      </article>
+      <div class="drill-actions">
+        <button class="btn primary" id="revealBtn">Show answer</button>
+        <button class="btn ok" id="drillOk">I've got it</button>
+        <button class="btn rev" id="drillRev">Review again</button>
+        <button class="btn" id="drillNext">Skip</button>
+      </div>
+      <p class="keys">Answer out loud before revealing. Aim for 60 to 90 seconds. Keys: <kbd>Space</kbd> show answer, <kbd>G</kbd> got it, <kbd>R</kbd> review again, <kbd>→</kbd> skip.</p>
+    </div>
+  </section>
 
-Manager interviews usually mix your story, one or two project deep dives, a design discussion, and time for your questions. Use this to pace yourself.
+  <!-- ================= NUMBERS ================= -->
+  <section class="view sheet" id="view-numbers" hidden>
+    <h2>Numbers on your resume</h2>
+    <p>Every number invites "how did you measure that?" Know what each one means and the one-line explanation behind it.</p>
+    <div class="num-grid" id="numGrid"></div>
+  </section>
 
-1. 0–3 min
+  <!-- ================= PLAN ================= -->
+  <section class="view sheet" id="view-plan" hidden>
+    <h2>How the 30 minutes will probably go</h2>
+    <p>Manager interviews usually mix your story, one or two project deep dives, a design discussion, and time for your questions. Use this to pace yourself.</p>
+    <ol class="timeline">
+      <li><span class="t">0–3 min</span><h3>Introductions and your background</h3><p>Deliver the 90-second story. End by pointing toward the J&amp;J project so they ask about it.</p></li>
+      <li><span class="t">3–13 min</span><h3>Deep dive on your current project</h3><p>Architecture, hallucination controls, HITL, the turnaround metric. Draw the system if there's a whiteboard or shared screen.</p></li>
+      <li><span class="t">13–20 min</span><h3>Technical breadth</h3><p>RAG, agents versus workflows, MCP, GCP choices, testing and CI/CD. Short answers; let them pick what to dig into.</p></li>
+      <li><span class="t">20–26 min</span><h3>Design or scenario question</h3><p>Clarify requirements, sketch components, name trade-offs, mention evaluation and cost.</p></li>
+      <li><span class="t">26–30 min</span><h3>Your questions</h3><p>Ask two thoughtful questions. Thank them and restate your interest in one sentence.</p></li>
+    </ol>
+    <div class="two">
+      <div class="panel">
+        <h3>Do</h3>
+        <ul>
+          <li>Lead with the answer, then give detail.</li>
+          <li>Say "I" for your work and "we" for the team's, and be clear which is which.</li>
+          <li>Name trade-offs: what you chose, what you gave up.</li>
+          <li>Pause and ask "want me to go deeper on any part?"</li>
+          <li>Say "I haven't done that, but here's how I'd approach it" when true.</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3>Avoid</h3>
+        <ul>
+          <li>Answers over two minutes without checking in.</li>
+          <li>Claiming you ran RLHF training when it was a feedback loop.</li>
+          <li>Sharing confidential J&amp;J details or client names beyond your resume.</li>
+          <li>Framework lists without the reason you chose each.</li>
+          <li>Speaking negatively about a past employer.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="two">
+      <div class="panel">
+        <h3>Tonight</h3>
+        <ul>
+          <li>Go through every "Likely" question once.</li>
+          <li>Write your real 5+ workflow steps and your real 4 ranker signals.</li>
+          <li>Draw the J&amp;J architecture from memory in two minutes.</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3>Interview day</h3>
+        <ul>
+          <li>Drill "Needs review" for 20 minutes.</li>
+          <li>Reread the job description and pick two questions for the manager.</li>
+          <li>Test your camera, mic and a whiteboard tool.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
 
-   ### Introductions and your background
+<script>
+const CATEGORIES = [
+  { id: "intro", name: "Opening and your story", blurb: "The first five minutes. Nail these and the rest of the interview follows your lead." },
+  { id: "jnj", name: "J&J agentic report system", blurb: "Your headline project. Expect the deepest probing here." },
+  { id: "hitl", name: "Human-in-the-loop and feedback", blurb: "HITL and RLHF-inspired loops are unusual claims, so be ready to define them precisely." },
+  { id: "gcp", name: "GCP, GKE and data pipelines", blurb: "Deployment, storage choices and ETL across Pub/Sub, Dataflow, Dataproc and BigQuery." },
+  { id: "slu", name: "MeltShiny and technical leadership", blurb: "Leading people, code review and open-source process." },
+  { id: "hr", name: "HighRadius ML internship", blurb: "Classic supervised ML: features, tuning, metrics, serving." },
+  { id: "proj", name: "Personal projects", blurb: "Market Researcher and the SQL agent. Shows initiative, so explain the design choices." },
+  { id: "llm", name: "LLMs, RAG and agents", blurb: "General knowledge any AI engineer with two years' experience should explain cleanly." },
+  { id: "ml", name: "ML fundamentals", blurb: "Bias-variance, metrics, evaluation. Short, crisp answers win." },
+  { id: "eng", name: "Python, APIs, SQL and testing", blurb: "Backend engineering fundamentals behind your microservices." },
+  { id: "sd", name: "System design", blurb: "Open-ended designs a manager may sketch with you. Talk in steps: requirements, design, trade-offs." },
+  { id: "beh", name: "Behavioral", blurb: "Use STAR: situation, task, action, result. Keep each story under two minutes." }
+];
 
-   Deliver the 90-second story. End by pointing toward the J&J project so they ask about it.
-2. 3–13 min
+// lvl: 1 = warm-up, 2 = core, 3 = deep dive.  hot: very likely to be asked.
+const QUESTIONS = [
+/* ================= INTRO ================= */
+{ cat:"intro", lvl:1, hot:true,
+  q:"Walk me through your background.",
+  a:`<p>Aim for 90 seconds, in chronological order, ending on why this role.</p>
+<ul>
+<li><b>Foundation:</b> "I studied Electronics and Communication in undergrad, then did my MS in Computer Science at Saint Louis University with a 3.94 GPA, focused on ML and systems."</li>
+<li><b>Early ML:</b> "At HighRadius I built payment-delay regression models on 50,000+ invoices and served them as a Flask microservice, so I got exposure to the full path from features to a deployed model."</li>
+<li><b>Leadership:</b> "At SLU I was technical lead on MeltShiny, an open-source research platform. I led four contributors, ran code reviews and set up Docker and GitHub Actions CI/CD."</li>
+<li><b>Current:</b> "Now at Pozent, working with Johnson &amp; Johnson, I architected an agentic AI system that generates Medical Impact Assessment reports. It runs on GKE with Vertex AI, LangChain and Google ADK, and cut turnaround from two to three weeks to same-day approval."</li>
+<li><b>Close:</b> "What I enjoy most is taking an LLM idea to production with the testing, data and human review that make it reliable, and that's what draws me to this role."</li>
+</ul>`,
+  fu:["Which of these experiences was most formative?","Why the switch from ECE to CS?"],
+  tip:"Practice out loud with a timer. Stop at two minutes even if you're mid-sentence, then trim." },
 
-   ### Deep dive on your current project
+{ cat:"intro", lvl:1, hot:true,
+  q:"Why are you looking for a new role after about a year at your current position?",
+  a:`<p>Keep it forward-looking and never negative about your employer or client.</p>
+<p>"I've taken the report system from design to production and it's stable now. I want to go deeper on [what this company does: agent platforms, larger scale, product ownership] and work closer to the product and end users than a consulting setup allows."</p>`,
+  fu:["What would make you stay at your current company?"],
+  tip:"Tailor the bracket to the company. Read their job description again tonight." },
 
-   Architecture, hallucination controls, HITL, the turnaround metric. Draw the system if there's a whiteboard or shared screen.
-3. 13–20 min
+{ cat:"intro", lvl:1, hot:true,
+  q:"What's the project you're most proud of, and why?",
+  a:`<p>Pick the J&amp;J Medical Impact Assessment system. Structure the answer as problem, what you built, the hard part, the result.</p>
+<ul>
+<li><b>Problem:</b> Medical Impact Assessment reports were drafted by hand from structured, semi-structured and unstructured sources, taking two to three weeks.</li>
+<li><b>Built:</b> A multi-step agentic workflow (5+ steps) that ingests the sources, extracts and validates facts, drafts each section, and renders PDF and Word output, with a reviewer approval step.</li>
+<li><b>Hard part:</b> Making output trustworthy enough for a regulated medical context: grounding every claim in source data, structured outputs, and human review with feedback captured for improvement.</li>
+<li><b>Result:</b> Draft generation in under a minute and same-day approvals.</li>
+</ul>`,
+  fu:["What would you do differently if you rebuilt it?","What was your specific role versus the team's?"] },
 
-   ### Technical breadth
+{ cat:"intro", lvl:1,
+  q:"What's your strongest technical skill, and what's one you're actively working on?",
+  a:`<p><b>Strongest:</b> "Building production LLM workflows end to end: orchestration with LangGraph or ADK, a FastAPI service around it, deployment on GKE, and the data pipeline feeding it."</p>
+<p><b>Working on:</b> Pick something honest and adjacent, for example "rigorous LLM evaluation: building offline eval sets and automated graders so prompt changes are measured instead of eyeballed," or "deeper Kubernetes operations like autoscaling and observability."</p>`,
+  fu:["How are you working on it concretely?"] },
 
-   RAG, agents versus workflows, MCP, GCP choices, testing and CI/CD. Short answers; let them pick what to dig into.
-4. 20–26 min
+{ cat:"intro", lvl:1,
+  q:"Your resume lists Python, SQL and R. How do you decide which to use?",
+  a:`<ul>
+<li><b>SQL</b> for anything that lives in a warehouse: aggregation, joins and filtering belong close to the data (BigQuery, PostgreSQL).</li>
+<li><b>Python</b> for services, ML, LLM orchestration and glue code.</li>
+<li><b>R</b> where the domain ecosystem lives there. MeltShiny used R because the MeltR package and the scientists' workflow were in R, and Shiny gave a browser UI quickly.</li>
+</ul>`,
+  fu:[] },
 
-   ### Design or scenario question
+{ cat:"intro", lvl:2,
+  q:"You have about two years of experience. What level of ownership have you had?",
+  a:`<p>Answer with concrete scope, not adjectives.</p>
+<ul>
+<li>"At J&amp;J I architected the agentic system: I made the framework choices, designed the workflow steps, and owned the microservices and their deployment across two GKE environments."</li>
+<li>"At SLU I owned the technical direction and the review process for four contributors."</li>
+<li>"I'm comfortable owning a service end to end, and I still seek review on cross-team architecture decisions."</li>
+</ul>`,
+  fu:["Tell me about a decision you made that someone senior disagreed with."] },
 
-   Clarify requirements, sketch components, name trade-offs, mention evaluation and cost.
-5. 26–30 min
+/* ================= J&J ================= */
+{ cat:"jnj", lvl:1, hot:true,
+  q:"Explain the Medical Impact Assessment system as if I've never heard of it.",
+  a:`<p>"When something changes, for example a product, supplier, or process, the medical and safety teams need a report assessing its impact. Writing those means pulling data from databases, spreadsheets and documents, then drafting a consistent, reviewable report. That took two to three weeks."</p>
+<p>"We built an agentic pipeline that does the drafting. It gathers the inputs, extracts the relevant facts, writes each section against a template, checks it, and produces PDF and Word files. A reviewer edits or approves in the loop, and their feedback improves future drafts."</p>`,
+  fu:["Who are the users?","What happens if the system is wrong?"],
+  tip:"Don't disclose anything confidential. It's fine to say 'I'll keep this at a level I can share.'" },
 
-   ### Your questions
+{ cat:"jnj", lvl:2, hot:true,
+  q:"Walk me through the architecture of the report generation system.",
+  a:`<p>Draw it left to right as you speak:</p>
+<ol>
+<li><b>Ingestion:</b> Structured data from Cloud SQL and BigQuery, semi-structured (spreadsheets, JSON), unstructured (PDF, Word). Documents are parsed and chunked.</li>
+<li><b>API layer:</b> FastAPI/Flask microservices on GKE expose endpoints such as "create report job", "get status", "submit review".</li>
+<li><b>Orchestration:</b> A multi-step agent workflow in Google ADK and LangChain. Steps are roughly: gather context, extract facts into a schema, draft sections, validate against source and template rules, assemble the document.</li>
+<li><b>Models:</b> Gemini on Vertex AI, with structured outputs for extraction and templated prompts per section.</li>
+<li><b>Human review:</b> Draft goes to a reviewer who edits, comments or approves. Edits and ratings are stored.</li>
+<li><b>Output:</b> Rendered to Word and PDF from a template.</li>
+<li><b>Storage:</b> Cloud SQL for operational state (jobs, drafts, review status); BigQuery for analytics and feedback history.</li>
+</ol>`,
+  fu:["Why microservices instead of one service?","Where is state kept between steps?","How do you handle a step failing halfway?"] },
 
-   Ask two thoughtful questions. Thank them and restate your interest in one sentence.
+{ cat:"jnj", lvl:2, hot:true,
+  q:"How did you get turnaround from two to three weeks down to under a minute? That's a big claim.",
+  a:`<p>Be precise about what each number measures. Interviewers respect this.</p>
+<ul>
+<li>"Under a minute is the <b>draft generation time</b>: from submitting a request to having a complete draft report."</li>
+<li>"The two to three weeks was the old <b>end-to-end</b> process: people collecting data from several teams, writing, and multiple review rounds."</li>
+<li>"With a complete, consistent draft generated instantly, the reviewer's job becomes checking and editing instead of writing, which is why approvals can happen the same day."</li>
+</ul>`,
+  fu:["How did you measure the baseline?","What does a reviewer typically change?"],
+  tip:"Never let the metric sound like the AI replaces review. The human approval is what makes it acceptable in a medical setting." },
 
-### Do
+{ cat:"jnj", lvl:2, hot:true,
+  q:"Why did you use Google ADK and LangChain together? Isn't that redundant?",
+  a:`<ul>
+<li><b>Google ADK</b> handles agent orchestration: defining agents, tools and the multi-step flow, and it integrates natively with Vertex AI and Gemini.</li>
+<li><b>LangChain</b> provides mature components: document loaders, text splitters, prompt templates and output parsers.</li>
+<li>"We used each for what it's best at rather than forcing one framework to do everything. The trade-off is two dependencies to keep updated, so we kept LangChain usage to utility layers with clear boundaries."</li>
+</ul>`,
+  fu:["Would you consider LangGraph instead? Why or why not?"] },
 
-- Lead with the answer, then give detail.
-- Say "I" for your work and "we" for the team's, and be clear which is which.
-- Name trade-offs: what you chose, what you gave up.
-- Pause and ask "want me to go deeper on any part?"
-- Say "I haven't done that, but here's how I'd approach it" when true.
+{ cat:"jnj", lvl:2, hot:true,
+  q:"How do you prevent hallucinations in medical reports?",
+  a:`<p>Layered defence, from cheapest to strongest:</p>
+<ul>
+<li><b>Grounding:</b> The model only writes from retrieved source context. Prompts instruct it to say "not found in source" rather than guess.</li>
+<li><b>Extract then write:</b> Facts are first pulled into a strict schema (structured output), validated, and then used to write prose. Numbers come from the data, not model memory.</li>
+<li><b>Deterministic checks:</b> Code verifies that dates, IDs, and numeric values in the draft match the source records.</li>
+<li><b>Citations:</b> Sections carry references to the source so reviewers can verify quickly.</li>
+<li><b>Low temperature</b> and fixed templates for consistency.</li>
+<li><b>Human approval</b> is mandatory before any report is final.</li>
+</ul>`,
+  fu:["How would you measure hallucination rate?","What happens if the validator finds a mismatch?"] },
 
-### Avoid
+{ cat:"jnj", lvl:2,
+  q:"How did you handle structured, semi-structured and unstructured data differently?",
+  a:`<ul>
+<li><b>Structured</b> (SQL tables): query directly with SQL; pass exact values into prompts. No retrieval needed.</li>
+<li><b>Semi-structured</b> (spreadsheets, JSON): normalize into a consistent schema with Python, then treat as structured.</li>
+<li><b>Unstructured</b> (PDF, Word): parse, clean, chunk with overlap, embed, and retrieve relevant chunks per report section. Tables inside PDFs need special parsing.</li>
+</ul>
+<p>"The key principle was to convert everything as far toward structured as possible before the LLM sees it."</p>`,
+  fu:["How did you parse tables in PDFs?","What chunk size did you use and why?"] },
 
-- Answers over two minutes without checking in.
-- Claiming you ran RLHF training when it was a feedback loop.
-- Sharing confidential J&J details or client names beyond your resume.
-- Framework lists without the reason you chose each.
-- Speaking negatively about a past employer.
+{ cat:"jnj", lvl:2,
+  q:"How do you generate the PDF and Word outputs?",
+  a:`<ul>
+<li>The LLM produces <b>structured content</b> (JSON sections), not a formatted document.</li>
+<li>A template engine fills a Word template (for example python-docx or docxtpl), so formatting, headers and branding stay deterministic.</li>
+<li>PDF is converted from the Word output or rendered from HTML, so both formats match.</li>
+<li>"Separating content generation from formatting means the LLM can never break the layout."</li>
+</ul>`,
+  fu:["How do you handle tables and charts in the output?"] },
 
-### Tonight
+{ cat:"jnj", lvl:3,
+  q:"What happens if the LLM call fails or times out midway through the workflow?",
+  a:`<ul>
+<li><b>Retries</b> with exponential backoff and jitter for transient errors (429, 503, timeouts).</li>
+<li><b>Checkpointing:</b> each step's output is persisted in Cloud SQL, so a retry resumes from the failed step instead of restarting.</li>
+<li><b>Idempotency:</b> jobs have IDs; re-running a step overwrites rather than duplicates.</li>
+<li><b>Async jobs:</b> the API returns a job ID immediately; clients poll status, so long runs don't hit HTTP timeouts.</li>
+<li><b>Graceful failure:</b> after max retries, the job is marked failed with the step and error, and an alert fires.</li>
+</ul>`,
+  fu:["How do you avoid duplicate reports if a user clicks twice?"] },
 
-- Go through every "Likely" question once.
-- Write your real 5+ workflow steps and your real 4 ranker signals.
-- Draw the J&J architecture from memory in two minutes.
+{ cat:"jnj", lvl:3,
+  q:"How did you evaluate the quality of generated reports before going to production?",
+  a:`<ul>
+<li><b>Golden set:</b> past reports written by experts, with their inputs, used as references.</li>
+<li><b>Automated checks:</b> section completeness, schema validity, factual consistency with source values.</li>
+<li><b>LLM-as-judge</b> with a rubric (accuracy, completeness, tone) to score drafts at scale, spot-checked against human ratings.</li>
+<li><b>Human review scores</b> from SMEs during a pilot.</li>
+<li><b>Regression testing:</b> any prompt or model change reruns the eval set before release.</li>
+</ul>`,
+  fu:["How do you know the LLM judge is reliable?"],
+  tip:"If your team did less than this, say what you did and what you'd add. Honesty beats a perfect-sounding answer." },
 
-### Interview day
+{ cat:"jnj", lvl:2,
+  q:"How did you handle prompt management and versioning?",
+  a:`<ul>
+<li>Prompts stored as versioned templates in the repo, not hard-coded in functions.</li>
+<li>Each generated report records the prompt version and model version used, for traceability (important in regulated settings).</li>
+<li>Changes go through code review and the eval set before deployment.</li>
+</ul>`,
+  fu:[] },
 
-- Drill "Needs review" for 20 minutes.
-- Reread the job description and pick two questions for the manager.
-- Test your camera, mic and a whiteboard tool.
+{ cat:"jnj", lvl:3,
+  q:"How do you handle PHI, PII and compliance in a healthcare LLM system?",
+  a:`<ul>
+<li>Data stays in the company's GCP project; Vertex AI keeps data in-region and doesn't train on customer data.</li>
+<li>Least-privilege IAM and service accounts per microservice; secrets in Secret Manager.</li>
+<li>Minimize sensitive fields sent to the model; redact where not needed.</li>
+<li>Audit logs: who generated, edited and approved each report, with model and prompt versions.</li>
+<li>Human approval is mandatory before anything is official.</li>
+</ul>`,
+  fu:["What's GxP or 21 CFR Part 11 and does it apply?"],
+  tip:"Only mention specific regulations if you actually worked with them." },
+
+{ cat:"jnj", lvl:2,
+  q:"What were the 5+ agentic workflow steps specifically?",
+  a:`<p>Have your real list ready. A clean way to present it:</p>
+<ol>
+<li>Intake and validation of the request.</li>
+<li>Context gathering from SQL, BigQuery and documents.</li>
+<li>Fact extraction into a structured schema.</li>
+<li>Section drafting per template.</li>
+<li>Validation and consistency checks.</li>
+<li>Assembly and rendering to Word and PDF.</li>
+<li>Human review and feedback capture.</li>
+</ol>
+<p>"Breaking it into steps makes each one testable and lets us use the right model and prompt per step."</p>`,
+  fu:["Which steps are LLM calls and which are plain code?"] },
+
+{ cat:"jnj", lvl:3,
+  q:"How did you control latency and cost?",
+  a:`<ul>
+<li>Parallelize independent section drafts (async calls).</li>
+<li>Use a smaller, faster model for extraction and classification; a stronger model only for complex drafting.</li>
+<li>Cache repeated context and deterministic lookups.</li>
+<li>Trim context: send only relevant chunks, not whole documents.</li>
+<li>Track tokens per report in BigQuery to spot cost regressions.</li>
+</ul>`,
+  fu:["What's the cost of generating one report?"] },
+
+{ cat:"jnj", lvl:2,
+  q:"Why FastAPI for some services and Flask for others?",
+  a:`<ul>
+<li><b>FastAPI:</b> async-native, which suits I/O-bound LLM calls; Pydantic validation; automatic OpenAPI docs. Our default for new services.</li>
+<li><b>Flask:</b> some services were existing or simpler synchronous ones where migration wasn't worth it.</li>
+<li>"If starting fresh I'd standardize on FastAPI for consistency."</li>
+</ul>`,
+  fu:["What's the difference between async and threads in Python?"] },
+
+/* ================= HITL ================= */
+{ cat:"hitl", lvl:1, hot:true,
+  q:"What does Human-in-the-Loop mean in your system concretely?",
+  a:`<p>"The workflow pauses at defined points for a person to act, and it can't finish without them."</p>
+<ul>
+<li>After the draft is generated, a reviewer sees it with source references.</li>
+<li>They can approve, edit sections, or reject with comments, which can trigger regeneration of a section with that feedback.</li>
+<li>Only approved reports are finalized and exported.</li>
+<li>Every action is stored with the reviewer and timestamp.</li>
+</ul>`,
+  fu:["How is the pause implemented technically?"] },
+
+{ cat:"hitl", lvl:2, hot:true,
+  q:"What do you mean by 'RLHF-inspired feedback'? Did you actually fine-tune a model?",
+  a:`<p>Be very clear here. "Inspired" means you borrowed the idea, not the training algorithm.</p>
+<ul>
+<li>"We didn't run RLHF training. True RLHF trains a reward model on human preferences and then optimizes the LLM with reinforcement learning, which needs lots of data and model access."</li>
+<li>"We borrowed the principle: collect human judgements and feed them back to improve outputs."</li>
+<li><b>How:</b> reviewer ratings and edits are stored; the diff between draft and approved text shows systematic issues; highly rated examples become few-shot examples; recurring corrections become prompt rules or validators.</li>
+<li>"That dataset could later support fine-tuning or DPO if the volume justifies it."</li>
+</ul>`,
+  fu:["What's DPO and how does it differ from RLHF?","How much feedback data do you have?"],
+  tip:"This is the claim most likely to be probed. Say 'we didn't fine-tune' confidently; it shows you understand the difference." },
+
+{ cat:"hitl", lvl:2,
+  q:"How is the pause for human review implemented technically?",
+  a:`<ul>
+<li>Workflow state is persisted in Cloud SQL with a status such as <code>AWAITING_REVIEW</code>.</li>
+<li>The service returns; nothing blocks a thread while waiting for a human.</li>
+<li>The reviewer's action calls an API endpoint that updates state and resumes the workflow from the checkpoint.</li>
+<li>In LangGraph this maps to an <code>interrupt</code> with a checkpointer; in ADK, to a tool or callback that requests confirmation and resumes on response.</li>
+</ul>`,
+  fu:[] },
+
+{ cat:"hitl", lvl:2,
+  q:"How do you use reviewer edits to improve the system over time?",
+  a:`<ul>
+<li>Store draft and final text per section; compute diffs and categorize edits (factual fix, tone, missing info, formatting).</li>
+<li>Recurring factual fixes point to retrieval or extraction bugs; fix at the source.</li>
+<li>Recurring style edits become prompt instructions or template changes.</li>
+<li>Best approved sections become few-shot exemplars, retrieved by similarity.</li>
+<li>Track metrics over time: edit distance, approval-without-edit rate, time to approve.</li>
+</ul>`,
+  fu:["What's your approval-without-edits rate?"] },
+
+{ cat:"hitl", lvl:3,
+  q:"When would you remove the human from the loop?",
+  a:`<p>"In a medical or regulated context, probably never for final approval. But you can reduce the burden."</p>
+<ul>
+<li>Risk-tier the reports: low-risk ones get lighter review.</li>
+<li>Only surface sections with low confidence or validator warnings.</li>
+<li>Require sustained metrics (for example very high approval-without-edit rates over months) and stakeholder sign-off before any change.</li>
+</ul>`,
+  fu:[] },
+
+/* ================= GCP ================= */
+{ cat:"gcp", lvl:1, hot:true,
+  q:"Why Cloud SQL for operational storage and BigQuery for analytics?",
+  a:`<ul>
+<li><b>Cloud SQL (PostgreSQL)</b> is an OLTP database: fast single-row reads and writes, transactions, constraints. Right for job status, drafts and review state that change constantly.</li>
+<li><b>BigQuery</b> is an OLAP warehouse: columnar, scans billions of rows cheaply for aggregation, but not for frequent small updates.</li>
+<li>"Using each for its strength avoids hammering the transactional DB with analytics queries."</li>
+</ul>`,
+  fu:["How does data get from Cloud SQL into BigQuery?"] },
+
+{ cat:"gcp", lvl:2, hot:true,
+  q:"Explain your ETL pipeline across Pub/Sub, Dataflow, Dataproc and BigQuery.",
+  a:`<ul>
+<li><b>Pub/Sub:</b> event bus. Upstream systems publish events (new record, update) and decouple producers from consumers.</li>
+<li><b>Dataflow</b> (Apache Beam): streaming and batch transforms, subscribes to Pub/Sub, cleans and enriches, writes to BigQuery. Serverless autoscaling.</li>
+<li><b>Dataproc</b> (managed Spark/Hadoop): heavier batch jobs or existing Spark code, such as large backfills and complex joins.</li>
+<li><b>BigQuery:</b> the analytical destination feeding dashboards and the AI apps.</li>
+<li><b>Quickbase:</b> two integrations to sync data with business apps via its API.</li>
+</ul>`,
+  fu:["When would you pick Dataproc over Dataflow?","How do you handle duplicate messages from Pub/Sub?"] },
+
+{ cat:"gcp", lvl:2,
+  q:"When would you choose Dataflow versus Dataproc?",
+  a:`<ul>
+<li><b>Dataflow:</b> new pipelines, streaming, want serverless with no cluster management, Beam's unified batch and stream model.</li>
+<li><b>Dataproc:</b> existing Spark/PySpark code, need Spark ML or specific Hadoop ecosystem tools, or want tighter control of cluster config and cost for large batch jobs (ephemeral clusters).</li>
+</ul>`,
+  fu:[] },
+
+{ cat:"gcp", lvl:2,
+  q:"Pub/Sub delivers at least once. How do you handle duplicates?",
+  a:`<ul>
+<li>Make consumers <b>idempotent</b>: each message carries a unique ID; writes are upserts or MERGE keyed on it.</li>
+<li>In BigQuery, dedupe with <code>MERGE</code> or <code>ROW_NUMBER() OVER (PARTITION BY id ORDER BY ts DESC)</code>.</li>
+<li>Pub/Sub also offers exactly-once delivery for pull subscriptions, and Dataflow can dedupe on an ID attribute.</li>
+<li>Use a dead-letter topic for messages that keep failing.</li>
+</ul>`,
+  fu:[] },
+
+{ cat:"gcp", lvl:2, hot:true,
+  q:"How did you deploy the microservices on GKE across two environments?",
+  a:`<ul>
+<li>Each service containerized with Docker; images pushed to Artifact Registry.</li>
+<li>Kubernetes manifests (Deployment, Service, ConfigMap, Secret) per service; environment differences in config (for example Kustomize overlays or Helm values for dev and prod).</li>
+<li>CI builds, tests and pushes images; CD deploys to dev automatically and to prod after approval.</li>
+<li>Workload Identity to give pods GCP permissions without key files.</li>
+<li>Readiness and liveness probes, resource requests and limits, rolling updates.</li>
+</ul>`,
+  fu:["What's the difference between a readiness and a liveness probe?","How did you do rollbacks?"] },
+
+{ cat:"gcp", lvl:2,
+  q:"Readiness probe versus liveness probe?",
+  a:`<ul>
+<li><b>Readiness:</b> "Can this pod receive traffic?" If failing, it's removed from the Service's endpoints but not restarted. Use it during startup or when dependencies are down.</li>
+<li><b>Liveness:</b> "Is this pod stuck?" If failing, Kubernetes restarts the container.</li>
+<li>Common mistake: liveness probe checking a downstream database, which causes restart storms when the DB blips.</li>
+</ul>`,
+  fu:[] },
+
+{ cat:"gcp", lvl:3,
+  q:"How would you autoscale an LLM-backed service on GKE?",
+  a:`<ul>
+<li><b>HPA</b> on CPU is misleading for LLM services because they mostly wait on network I/O. Better to scale on request concurrency or queue depth (custom metrics).</li>
+<li>Move long jobs to a queue (Pub/Sub or Cloud Tasks) with workers that scale on backlog.</li>
+<li>Remember the real bottleneck is often the model's rate limit (quota), not pods. Add concurrency limits and backoff.</li>
+<li>Cluster autoscaler adds nodes when pods can't be scheduled.</li>
+</ul>`,
+  fu:[] },
+
+{ cat:"gcp", lvl:2,
+  q:"How did you support 100,000+ records? What did you do for scale?",
+  a:`<ul>
+<li>Indexes on the columns used in lookups and filters in Cloud SQL.</li>
+<li>Pagination on list APIs instead of returning everything.</li>
+<li>Batch processing for bulk jobs; streaming for incremental changes.</li>
+<li>Partitioned and clustered BigQuery tables to reduce scanned data and cost.</li>
+<li>Connection pooling from services to Cloud SQL.</li>
+</ul>
+<p>"100K rows isn't huge for Postgres; the point was designing so it keeps working as it grows 10x."</p>`,
+  fu:["What's partitioning versus clustering in BigQuery?"] },
+
+{ cat:"gcp", lvl:2,
+  q:"Partitioning versus clustering in BigQuery?",
+  a:`<ul>
+<li><b>Partitioning</b> splits the table into segments, usually by date or an integer range. Queries filtering on the partition column scan only matching partitions, cutting cost.</li>
+<li><b>Clustering</b> sorts data within partitions by up to four columns, so filters on those columns skip blocks.</li>
+<li>Typical pattern: partition by event date, cluster by common filter keys such as customer ID.</li>
+</ul>`,
+  fu:[] },
+
+/* ================= SLU ================= */
+{ cat:"slu", lvl:1, hot:true,
+  q:"What is MeltShiny and what did you lead?",
+  a:`<ul>
+<li>A browser-accessible research platform for analyzing DNA/RNA melt curves: how nucleic acids come apart with temperature, used to derive thermodynamic parameters.</li>
+<li>It consolidated two legacy tools into one cross-platform app built on R Shiny and the MeltR package.</li>
+<li>"As technical lead I set the architecture, broke work into sprints, reviewed code, mentored four undergraduates, and set up Docker and GitHub Actions for CI/CD."</li>
+</ul>`,
+  fu:["Why R Shiny instead of a Python web framework?"] },
+
+{ cat:"slu", lvl:2,
+  q:"Explain the nonlinear curve fitting and outlier detection you did.",
+  a:`<ul>
+<li>Melt curves are absorbance versus temperature. A two-state model describes the transition; fitting it with nonlinear least squares yields parameters such as enthalpy (ΔH), entropy (ΔS), free energy (ΔG) and melting temperature (Tm).</li>
+<li>Nonlinear because the model isn't linear in its parameters, so you need iterative optimization (for example Gauss-Newton or Levenberg-Marquardt, <code>nls</code> in R) with sensible starting values.</li>
+<li><b>Outliers:</b> flagged curves whose fit residuals or derived parameters deviated strongly from the group, so researchers could exclude bad samples.</li>
+<li><b>Reactive:</b> in Shiny, changing an input automatically recomputes only the dependent outputs.</li>
+</ul>`,
+  fu:["What happens if the fit doesn't converge?"],
+  tip:"You don't need to go deep into biochemistry. Show you understand the fitting and the software design." },
+
+{ cat:"slu", lvl:2, hot:true,
+  q:"How did you mentor four undergraduates? Give an example.",
+  a:`<ul>
+<li>Weekly code reviews with specific, kind comments that explain the why, not just the fix.</li>
+<li>Paired on first tasks; gave small, well-scoped "good first issues" to build confidence.</li>
+<li>Wrote contributing guidelines and a PR template so expectations were clear.</li>
+<li><b>Story:</b> Prepare one real example of a contributor who struggled (for example with Git or R reactivity) and how you helped them ship a feature.</li>
+</ul>`,
+  fu:["How do you give critical feedback on code?"] },
+
+{ cat:"slu", lvl:2,
+  q:"How did you handle merge conflicts and keep code quality with 30+ PRs?",
+  a:`<ul>
+<li>Protected main branch: required PR review and passing CI.</li>
+<li>Short-lived feature branches; rebase often on main to keep conflicts small.</li>
+<li>CI ran tests and linting on every PR.</li>
+<li>For conflicts: understand both changes, resolve, run tests, and involve both authors if intent is unclear.</li>
+<li>Triaged 50+ issues with labels and priorities so the team worked on the right things.</li>
+</ul>`,
+  fu:["Merge versus rebase?"] },
+
+{ cat:"slu", lvl:1,
+  q:"Git merge versus rebase?",
+  a:`<ul>
+<li><b>Merge</b> creates a merge commit that joins histories. Safe and preserves exact history, but can be noisy.</li>
+<li><b>Rebase</b> replays your commits on top of the target, giving a linear history. Never rebase commits others already pulled.</li>
+<li>Common practice: rebase your feature branch locally on main; merge (or squash-merge) the PR into main.</li>
+</ul>`,
+  fu:[] },
+
+/* ================= HIGHRADIUS ================= */
+{ cat:"hr", lvl:2, hot:true,
+  q:"Walk me through the payment delay prediction model.",
+  a:`<ul>
+<li><b>Goal:</b> predict how many days late a B2B invoice will be paid, improving cash-flow forecasting.</li>
+<li><b>Data:</b> 50,000+ historical invoices.</li>
+<li><b>Target:</b> days between due date and clear date (regression).</li>
+<li><b>Features (15+):</b> customer's historical average delay, invoice amount, payment terms, day-of-week and month of due date, business segment, number of open invoices, recency features.</li>
+<li><b>Models:</b> started with linear regression baseline, then tree ensembles (Random Forest, Gradient Boosting / XGBoost), tuned with GridSearchCV.</li>
+<li><b>Metrics:</b> MAE and RMSE.</li>
+<li><b>Serving:</b> Flask microservice exposing a predict endpoint.</li>
+</ul>`,
+  fu:["Which features mattered most?","How did you avoid data leakage?"] },
+
+{ cat:"hr", lvl:2, hot:true,
+  q:"How did you avoid data leakage in the invoice model?",
+  a:`<ul>
+<li><b>Time-based split:</b> train on older invoices, validate on newer ones, mimicking production. A random split leaks future behaviour.</li>
+<li>Customer history features computed only from invoices paid <i>before</i> the invoice's creation date.</li>
+<li>Excluded fields only known after payment (clear date, payment method used).</li>
+<li>Fitted scalers and encoders inside the pipeline on training data only.</li>
+</ul>`,
+  fu:["What is target leakage versus train-test contamination?"] },
+
+{ cat:"hr", lvl:1,
+  q:"MAE versus RMSE: when would you prefer each?",
+  a:`<ul>
+<li><b>MAE:</b> average absolute error, in the same units (days). Robust to outliers; easy to explain ("off by 4 days on average").</li>
+<li><b>RMSE:</b> squares errors first, so it penalizes large errors more heavily.</li>
+<li>Use RMSE when big misses are especially costly; MAE when outliers shouldn't dominate. Reporting both is informative: a large gap between them indicates some large errors.</li>
+</ul>`,
+  fu:["What about R² or MAPE?"] },
+
+{ cat:"hr", lvl:2,
+  q:"How does GridSearchCV work and what are its limitations?",
+  a:`<ul>
+<li>Tries every combination of the given hyperparameter values, scoring each with k-fold cross-validation, and picks the best.</li>
+<li><b>Limitation:</b> cost grows exponentially with parameters. RandomizedSearchCV or Bayesian optimization (Optuna) explore more efficiently.</li>
+<li>For time-series data use <code>TimeSeriesSplit</code>, not shuffled k-fold.</li>
+<li>Put preprocessing in a <code>Pipeline</code> so it's refit per fold, avoiding leakage.</li>
+</ul>`,
+  fu:[] },
+
+{ cat:"hr", lvl:2,
+  q:"How did you reach 80%+ test coverage and what did you test?",
+  a:`<ul>
+<li><b>PyTest</b> for the Python ML service: feature engineering functions, input validation, API endpoints with a test client, model loading.</li>
+<li><b>JUnit and Mockito</b> for the Java Spring Boot services, mocking the database and external calls.</li>
+<li>Coverage enforced in CI.</li>
+<li>"Coverage is a floor, not a goal; I focused on edge cases like missing fields and unexpected categories."</li>
+</ul>`,
+  fu:["How do you test ML code where outputs aren't deterministic?"] },
+
+{ cat:"hr", lvl:1,
+  q:"What does 98% CI/CD pipeline success rate mean, and how did you get there?",
+  a:`<ul>
+<li>98% of pipeline runs completed without failures caused by the pipeline itself.</li>
+<li>Achieved by containerizing the Spring Boot services and MySQL with Docker so builds were reproducible, pinning dependencies, and fixing flaky tests.</li>
+</ul>`,
+  fu:["What's a flaky test and how do you fix one?"] },
+
+{ cat:"hr", lvl:3,
+  q:"How would you productionize that model today, beyond a Flask endpoint?",
+  a:`<ul>
+<li>Model registry and versioning (MLflow or Vertex AI Model Registry).</li>
+<li>Batch scoring nightly for all open invoices, plus an online endpoint for new ones.</li>
+<li>Monitoring for data drift (feature distributions) and performance drift (MAE on newly paid invoices).</li>
+<li>Scheduled retraining with an automatic comparison against the current model before promotion.</li>
+<li>Feature store to keep training and serving features consistent.</li>
+</ul>`,
+  fu:[] },
+
+/* ================= PROJECTS ================= */
+{ cat:"proj", lvl:2, hot:true,
+  q:"Walk me through your Personal Market Researcher.",
+  a:`<ul>
+<li><b>Problem:</b> I spent 3+ hours a week reading news, filings and forums for market research.</li>
+<li><b>Ingestion:</b> async Python ETL pulling from 20+ sources: news APIs, SEC EDGAR, Reddit. Rate limiting per source and structured caching.</li>
+<li><b>Agents:</b> a multi-agent system on Claude models: collectors, per-source analyzers, and a synthesizer.</li>
+<li><b>Ranking:</b> a 4-signal weighted ranker to prioritize what matters.</li>
+<li><b>UI:</b> React front end and FastAPI back end; one click generates the brief.</li>
+</ul>`,
+  fu:["What are the four signals?","Why multiple agents instead of one prompt?"] },
+
+{ cat:"proj", lvl:2, hot:true,
+  q:"What were the 4 signals in your ranker and how did you pick the weights?",
+  a:`<p>Have your real signals ready. A reasonable set:</p>
+<ul>
+<li><b>Relevance</b> to the tracked tickers or themes.</li>
+<li><b>Recency.</b></li>
+<li><b>Source credibility</b> (SEC filing &gt; major outlet &gt; forum post).</li>
+<li><b>Momentum or volume</b> (how many sources mention it, engagement).</li>
+</ul>
+<p>"Weights started as hand-tuned priors, then adjusted by looking at which items I actually found useful. With more feedback data I'd learn them, for example logistic regression on clicked versus ignored items."</p>`,
+  fu:[] },
+
+{ cat:"proj", lvl:2,
+  q:"How does prompt caching work and why did you use it?",
+  a:`<ul>
+<li>With Claude's prompt caching you mark a stable prefix (system prompt, instructions, large reference context) as cacheable.</li>
+<li>Subsequent calls with the same prefix read it from cache: much lower cost and latency for those tokens.</li>
+<li>"My system prompt and analysis instructions were long and identical across many calls, so caching them cut cost and time."</li>
+<li>Design implication: put static content first and variable content last.</li>
+</ul>`,
+  fu:["How is that different from caching responses?"] },
+
+{ cat:"proj", lvl:2,
+  q:"How did you implement rate limiting across 20+ async sources?",
+  a:`<ul>
+<li><code>asyncio</code> with <code>aiohttp</code>/<code>httpx</code> for concurrent requests.</li>
+<li>A per-source limiter: a semaphore for concurrency plus a token bucket for requests per second.</li>
+<li>Retries with exponential backoff; honour <code>Retry-After</code> headers on 429s.</li>
+<li>Cache responses with TTLs so repeated runs don't re-fetch.</li>
+<li>SEC EDGAR requires a descriptive User-Agent and has a request limit per second.</li>
+</ul>`,
+  fu:["Explain the token bucket algorithm."] },
+
+{ cat:"proj", lvl:2,
+  q:"Explain your AI SQL Data Retrieval Agent.",
+  a:`<ul>
+<li>Natural language question in, answer out, over 10+ PostgreSQL tables.</li>
+<li><b>Stage 1, generation:</b> LLM gets the question plus relevant schema (tables, columns, relationships, sample rows) and writes SQL.</li>
+<li><b>Stage 2, execution:</b> run against Postgres with safeguards; on error, feed the error back to the LLM to self-correct.</li>
+<li><b>Stage 3, formatting:</b> LLM turns rows into a readable answer.</li>
+<li>Handled 5+ query types: filters, aggregations, joins, group-by, subqueries or ranking.</li>
+<li>FastAPI back end, React front end.</li>
+</ul>`,
+  fu:["How do you stop it running DROP TABLE?","What if the schema is too big for the prompt?"] },
+
+{ cat:"proj", lvl:3, hot:true,
+  q:"How do you make a text-to-SQL agent safe?",
+  a:`<ul>
+<li>Connect with a <b>read-only database user</b>. This is the real protection, not the prompt.</li>
+<li>Parse the SQL (for example with <code>sqlglot</code>) and allow only SELECT statements.</li>
+<li>Enforce <code>LIMIT</code> and statement timeouts.</li>
+<li>Row-level security or views to restrict what data a user can see.</li>
+<li>Never trust the LLM's output as safe; treat it like user input.</li>
+</ul>`,
+  fu:[] },
+
+{ cat:"proj", lvl:3,
+  q:"How would you scale text-to-SQL to a database with 500 tables?",
+  a:`<ul>
+<li>You can't fit every schema in the prompt. Do <b>schema retrieval</b>: embed table and column descriptions, retrieve the most relevant tables per question.</li>
+<li>Add business descriptions and example queries for important tables.</li>
+<li>Few-shot examples retrieved by similarity to the question.</li>
+<li>Evaluate by execution accuracy on a test set of question and expected result pairs.</li>
+</ul>`,
+  fu:[] },
+
+/* ================= LLM / RAG / AGENTS ================= */
+{ cat:"llm", lvl:1, hot:true,
+  q:"Explain RAG and why you'd use it instead of fine-tuning.",
+  a:`<ul>
+<li><b>RAG:</b> at query time, retrieve relevant documents and put them in the prompt, so the model answers from that context.</li>
+<li><b>Why RAG:</b> knowledge stays current (update the index, not the model), answers can cite sources, cheaper, access control is enforceable at retrieval.</li>
+<li><b>Fine-tuning</b> is better for teaching style, format or a narrow skill, not for injecting frequently changing facts.</li>
+<li>They combine well: fine-tune for behaviour, RAG for knowledge.</li>
+</ul>`,
+  fu:[] },
+
+{ cat:"llm", lvl:2, hot:true,
+  q:"Walk me through building a RAG pipeline end to end.",
+  a:`<ol>
+<li><b>Ingest and parse:</b> PDFs, HTML, docs; handle tables and headers.</li>
+<li><b>Chunk:</b> by structure (sections, paragraphs), a few hundred tokens with overlap; attach metadata (source, date, section).</li>
+<li><b>Embed</b> chunks and store in a vector database (Vertex AI Vector Search, pgvector, etc.).</li>
+<li><b>Retrieve:</b> embed the query, top-k by similarity; ideally hybrid with keyword search (BM25).</li>
+<li><b>Rerank</b> candidates with a cross-encoder for precision.</li>
+<li><b>Generate</b> with the context, instructing the model to cite and to say when the answer isn't present.</li>
+<li><b>Evaluate:</b> retrieval (recall@k) and generation (faithfulness, answer relevance).</li>
+</ol>`,
+  fu:["How do you choose chunk size?","What is hybrid search?"] },
+
+{ cat:"llm", lvl:2, hot:true,
+  q:"How do you evaluate a RAG system?",
+  a:`<ul>
+<li><b>Retrieval:</b> build question-to-relevant-chunk pairs; measure recall@k, precision@k, MRR.</li>
+<li><b>Generation:</b> faithfulness (is every claim supported by context?), answer relevance, correctness versus reference.</li>
+<li>Tools: RAGAS, LLM-as-judge with rubrics, validated against human labels.</li>
+<li>Always separate the two: bad answers are often a retrieval problem, not a prompt problem.</li>
+</ul>`,
+  fu:[] },
+
+{ cat:"llm", lvl:2, hot:true,
+  q:"What is Graph RAG and when is it better than vector RAG?",
+  a:`<ul>
+<li>Graph RAG builds a <b>knowledge graph</b> of entities and relationships from documents, then retrieves by traversing the graph (and often community summaries).</li>
+<li><b>Better for:</b> multi-hop questions ("which suppliers of products affected by X also...?"), and global questions that need connecting information across many documents.</li>
+<li><b>Costs:</b> expensive to build (LLM extraction), graph quality depends on extraction, harder to maintain.</li>
+<li>Vector RAG is better for direct lookup of a fact in a passage.</li>
+</ul>`,
+  fu:["Have you used Graph RAG in production?"],
+  tip:"It's on your resume. If you've only prototyped it, say so." },
+
+{ cat:"llm", lvl:2, hot:true,
+  q:"What makes a system 'agentic'? How is it different from a chain?",
+  a:`<ul>
+<li><b>Chain:</b> fixed sequence of steps decided by the developer.</li>
+<li><b>Agent:</b> the LLM decides what to do next: which tool to call, whether to loop, when it's done.</li>
+<li>Practical view: it's a spectrum. Most production systems are <b>workflows with agentic steps</b>: deterministic structure where reliability matters, LLM decisions where flexibility is needed.</li>
+<li>"My J&amp;J system leans toward workflow: predictable steps, with LLM reasoning inside them, because medical reports need consistency."</li>
+</ul>`,
+  fu:["When would you avoid an agent?"] },
+
+{ cat:"llm", lvl:2, hot:true,
+  q:"LangChain versus LangGraph versus Google ADK: when would you use each?",
+  a:`<ul>
+<li><b>LangChain:</b> components and simple chains: loaders, splitters, prompt templates, model wrappers.</li>
+<li><b>LangGraph:</b> stateful graphs with cycles, branching, persistence (checkpointing) and human interrupts. Good for complex, controllable agents.</li>
+<li><b>Google ADK:</b> Google's agent framework; strong Vertex AI and Gemini integration, multi-agent hierarchies, built-in evaluation and deployment to Vertex AI Agent Engine.</li>
+<li>"If I'm on GCP and want managed deployment, ADK. If I need fine-grained control of state and cycles, LangGraph."</li>
+</ul>`,
+  fu:[] },
+
+{ cat:"llm", lvl:2, hot:true,
+  q:"What is MCP and why does it matter?",
+  a:`<ul>
+<li><b>Model Context Protocol</b>: an open standard, introduced by Anthropic, for connecting LLM applications to tools and data sources.</li>
+<li>An <b>MCP server</b> exposes tools, resources and prompts; any MCP-compatible client (Claude, IDEs, agent frameworks) can use them.</li>
+<li>Solves the N×M integration problem: build a tool once, use it across many agents and apps.</li>
+<li>Transports: stdio for local servers, streamable HTTP for remote.</li>
+<li>"I've used MCP servers to expose [data lookups / internal APIs] as tools to agents." Have your example ready.</li>
+</ul>`,
+  fu:["What security concerns come with MCP?"] },
+
+{ cat:"llm", lvl:2,
+  q:"How does tool calling / function calling work?",
+  a:`<ul>
+<li>You give the model tool definitions: name, description, JSON schema of parameters.</li>
+<li>The model returns a structured tool call instead of text when it decides a tool is needed.</li>
+<li>Your code executes the tool and sends the result back; the model continues.</li>
+<li>Good descriptions matter as much as the code. Validate arguments; the model can produce bad inputs.</li>
+</ul>`,
+  fu:[] },
+
+{ cat:"llm", lvl:2,
+  q:"What prompt engineering techniques do you actually use?",
+  a:`<ul>
+<li>Clear role and task, explicit constraints, output format (JSON schema).</li>
+<li>Few-shot examples of good output.</li>
+<li>Chain-of-thought or "think before answering" for reasoning tasks.</li>
+<li>Prompt chaining: split complex tasks into steps with their own prompts.</li>
+<li>Delimit context with tags, and put instructions about how to treat it.</li>
+<li>Always iterate against an eval set, not single examples.</li>
+</ul>`,
+  fu:[] },
+
+{ cat:"llm", lvl:2,
+  q:"What is prompt injection and how do you defend against it?",
+  a:`<ul>
+<li>Untrusted text (a document, web page, user input) contains instructions that hijack the model.</li>
+<li><b>Direct</b> (user types it) versus <b>indirect</b> (hidden in retrieved content).</li>
+<li>Defences: treat model output as untrusted; least-privilege tools; require human confirmation for sensitive actions; separate and label untrusted content; output validation; don't give one agent both private data access and external send ability.</li>
+<li>No defence is perfect, so limit blast radius.</li>
+</ul>`,
+  fu:[] },
+
+{ cat:"llm", lvl:1,
+  q:"What do temperature and top-p control?",
+  a:`<ul>
+<li><b>Temperature</b> scales the probability distribution: low = more deterministic, high = more varied.</li>
+<li><b>Top-p</b> (nucleus sampling) samples only from the smallest set of tokens whose probabilities sum to p.</li>
+<li>Use low temperature for extraction, classification and reports; higher for brainstorming.</li>
+<li>Even at temperature 0, outputs aren't guaranteed identical across calls.</li>
+</ul>`,
+  fu:[] },
+
+{ cat:"llm", lvl:2,
+  q:"How do embeddings work and how do you pick an embedding model?",
+  a:`<ul>
+<li>An embedding maps text to a vector where semantically similar texts are close (cosine similarity).</li>
+<li><b>Choosing:</b> domain fit, retrieval benchmarks (MTEB) as a starting point, then test on your data; dimension versus cost; max input length; multilingual needs.</li>
+<li>Changing embedding models means re-embedding the whole corpus.</li>
+</ul>`,
+  fu:[] },
+
+{ cat:"llm", lvl:2,
+  q:"How do you get reliable structured output (JSON) from an LLM?",
+  a:`<ul>
+<li>Use the provider's structured output or response schema feature (Gemini response schema, tool calling).</li>
+<li>Define the schema with Pydantic; validate every response.</li>
+<li>On validation failure, retry with the error message included.</li>
+<li>Keep schemas simple; use enums for categorical fields.</li>
+</ul>`,
+  fu:[] },
+
+{ cat:"llm", lvl:3,
+  q:"Explain the transformer and self-attention at a high level.",
+  a:`<ul>
+<li>Text becomes tokens, then embeddings plus positional information.</li>
+<li><b>Self-attention:</b> each token creates query, key and value vectors; attention weights = softmax(QKᵀ/√d); output is the weighted sum of values. Each token gathers information from relevant tokens.</li>
+<li><b>Multi-head:</b> several attention patterns in parallel.</li>
+<li>Layers of attention plus feed-forward networks, with residual connections and normalization.</li>
+<li>Decoder-only LLMs use causal masking and predict the next token.</li>
+<li>Attention cost grows quadratically with sequence length, which is why long context is expensive.</li>
+</ul>`,
+  fu:["What's the KV cache?"] },
+
+{ cat:"llm", lvl:3,
+  q:"Fine-tuning options: full, LoRA, instruction tuning, RLHF, DPO. Explain briefly.",
+  a:`<ul>
+<li><b>Full fine-tuning:</b> update all weights. Expensive.</li>
+<li><b>LoRA / PEFT:</b> freeze the model; train small low-rank adapter matrices. Cheap, swappable.</li>
+<li><b>Supervised fine-tuning:</b> train on input and ideal output pairs.</li>
+<li><b>RLHF:</b> train a reward model on human preference comparisons, then optimize the LLM with RL (PPO).</li>
+<li><b>DPO:</b> optimize directly on preference pairs without a separate reward model or RL loop. Simpler and more stable.</li>
+</ul>`,
+  fu:[] },
+
+{ cat:"llm", lvl:2,
+  q:"How do you monitor an LLM application in production?",
+  a:`<ul>
+<li><b>Tracing:</b> every step, prompt, response, tool call, latency, tokens (LangSmith, Langfuse, Cloud Trace).</li>
+<li><b>Operational:</b> latency percentiles, error rates, rate-limit hits, cost per request.</li>
+<li><b>Quality:</b> user feedback, human review outcomes, sampled LLM-judge scoring, validator failure rates.</li>
+<li>Alerts on spikes; dashboards in BigQuery / Looker.</li>
+</ul>`,
+  fu:[] },
+
+/* ================= ML ================= */
+{ cat:"ml", lvl:1, hot:true,
+  q:"Explain the bias-variance trade-off.",
+  a:`<ul>
+<li><b>Bias:</b> error from a model too simple to capture the pattern (underfitting). High train and test error.</li>
+<li><b>Variance:</b> error from a model too sensitive to training data (overfitting). Low train error, high test error.</li>
+<li>Reduce variance: more data, regularization, simpler model, bagging, dropout. Reduce bias: more features, more complex model, boosting.</li>
+</ul>`,
+  fu:[] },
+
+{ cat:"ml", lvl:1,
+  q:"How do you detect and prevent overfitting?",
+  a:`<ul>
+<li>Detect: gap between training and validation performance; learning curves.</li>
+<li>Prevent: cross-validation, regularization (L1/L2), early stopping, dropout, pruning or depth limits for trees, more data, data augmentation, simpler features.</li>
+</ul>`,
+  fu:[] },
+
+{ cat:"ml", lvl:1,
+  q:"L1 versus L2 regularization?",
+  a:`<ul>
+<li><b>L1 (Lasso):</b> penalty on absolute weights; drives some to exactly zero, so it does feature selection.</li>
+<li><b>L2 (Ridge):</b> penalty on squared weights; shrinks all weights smoothly; handles correlated features better.</li>
+<li><b>Elastic Net</b> combines both.</li>
+</ul>`,
+  fu:[] },
+
+{ cat:"ml", lvl:2, hot:true,
+  q:"Random Forest versus Gradient Boosting?",
+  a:`<ul>
+<li><b>Random Forest:</b> many deep trees trained independently on bootstrap samples with random feature subsets; averaged. Reduces variance, robust, little tuning, parallelizable.</li>
+<li><b>Gradient Boosting</b> (XGBoost, LightGBM): shallow trees trained sequentially, each fitting the previous errors. Reduces bias; usually more accurate on tabular data but needs tuning (learning rate, depth, rounds) and can overfit.</li>
+</ul>`,
+  fu:[] },
+
+{ cat:"ml", lvl:1,
+  q:"Precision, recall, F1, ROC-AUC: when do you use which?",
+  a:`<ul>
+<li><b>Precision:</b> of predicted positives, how many are right. Matters when false positives are costly.</li>
+<li><b>Recall:</b> of actual positives, how many were found. Matters when missing positives is costly (medical screening).</li>
+<li><b>F1:</b> harmonic mean; single number for imbalanced data.</li>
+<li><b>ROC-AUC:</b> ranking quality across thresholds; <b>PR-AUC</b> is more informative under heavy class imbalance.</li>
+</ul>`,
+  fu:[] },
+
+{ cat:"ml", lvl:2,
+  q:"How do you handle imbalanced data?",
+  a:`<ul>
+<li>Use proper metrics (PR-AUC, F1, recall at fixed precision), not accuracy.</li>
+<li>Class weights in the loss.</li>
+<li>Resampling: undersample majority, oversample minority, SMOTE (only on training data).</li>
+<li>Tune the decision threshold for the business trade-off.</li>
+</ul>`,
+  fu:[] },
+
+{ cat:"ml", lvl:2,
+  q:"How do you handle missing values and categorical features?",
+  a:`<ul>
+<li><b>Missing:</b> understand why first. Options: drop, impute (median, mode, model-based), add a "was missing" indicator. Tree models like XGBoost handle NaNs natively.</li>
+<li><b>Categorical:</b> one-hot for low cardinality; target encoding (with cross-fitting to avoid leakage) or embeddings for high cardinality; ordinal encoding for trees.</li>
+</ul>`,
+  fu:[] },
+
+{ cat:"ml", lvl:2,
+  q:"What's data drift versus concept drift?",
+  a:`<ul>
+<li><b>Data drift:</b> input distribution changes (customers shift to larger invoices).</li>
+<li><b>Concept drift:</b> relationship between inputs and target changes (economic downturn makes the same customers pay later).</li>
+<li>Monitor feature distributions (PSI, KS test) and live performance; retrain on schedule or on trigger.</li>
+</ul>`,
+  fu:[] },
+
+/* ================= ENGINEERING ================= */
+{ cat:"eng", lvl:2, hot:true,
+  q:"Explain async in Python. Why does it matter for LLM services?",
+  a:`<ul>
+<li><code>asyncio</code> runs many tasks on one thread; when a task awaits I/O, the event loop runs others.</li>
+<li>LLM calls are slow network I/O, so async lets one worker handle many concurrent requests.</li>
+<li>Use <code>asyncio.gather</code> to run independent calls in parallel.</li>
+<li>Pitfall: a blocking call (sync DB driver, <code>requests</code>, heavy CPU) inside an async route freezes the whole loop. Use async libraries or run it in a thread pool.</li>
+<li>CPU-bound work needs multiprocessing because of the GIL.</li>
+</ul>`,
+  fu:["What's the GIL?"] },
+
+{ cat:"eng", lvl:2, hot:true,
+  q:"How do you design a good REST API?",
+  a:`<ul>
+<li>Resource-based URLs (<code>/reports/{id}</code>), correct HTTP verbs, meaningful status codes.</li>
+<li>Validation at the boundary (Pydantic), consistent error format.</li>
+<li>Pagination, filtering, versioning (<code>/v1</code>).</li>
+<li>Idempotency keys for POSTs that create things.</li>
+<li>For long jobs: return <code>202 Accepted</code> with a job ID, then poll or use webhooks.</li>
+<li>Auth, rate limiting, OpenAPI documentation.</li>
+</ul>`,
+  fu:["PUT versus PATCH?","401 versus 403?"] },
+
+{ cat:"eng", lvl:1,
+  q:"PUT versus PATCH, and 401 versus 403?",
+  a:`<ul>
+<li><b>PUT</b> replaces the whole resource (idempotent). <b>PATCH</b> updates part of it.</li>
+<li><b>401 Unauthorized:</b> not authenticated (who are you?). <b>403 Forbidden:</b> authenticated but not allowed.</li>
+</ul>`,
+  fu:[] },
+
+{ cat:"eng", lvl:2,
+  q:"What goes into a production-ready Dockerfile for a Python service?",
+  a:`<ul>
+<li>Slim base image, pinned versions.</li>
+<li>Copy <code>requirements.txt</code> and install before copying code, to use layer caching.</li>
+<li>Multi-stage build to keep build tools out of the final image.</li>
+<li>Run as non-root user.</li>
+<li>No secrets in the image; inject via environment or Secret Manager.</li>
+<li>Run with a production server (uvicorn/gunicorn workers), and a <code>.dockerignore</code>.</li>
+</ul>`,
+  fu:[] },
+
+{ cat:"eng", lvl:2, hot:true,
+  q:"Describe your CI/CD pipeline with GitHub Actions.",
+  a:`<ol>
+<li>On PR: lint, type-check, unit tests, coverage.</li>
+<li>Build Docker image; security scan.</li>
+<li>On merge to main: push image tagged with commit SHA to the registry.</li>
+<li>Deploy to dev/staging automatically; run smoke or integration tests.</li>
+<li>Promote to prod with manual approval; rolling update; rollback by redeploying the previous tag.</li>
+</ol>
+<p>For LLM apps, add an eval-set run as a gate for prompt or model changes.</p>`,
+  fu:[] },
+
+{ cat:"eng", lvl:2,
+  q:"How do you test an LLM application?",
+  a:`<ul>
+<li><b>Unit tests</b> for deterministic code: parsing, validation, formatting, tool functions.</li>
+<li><b>Mock the LLM</b> in unit tests so they're fast and deterministic.</li>
+<li><b>Contract tests:</b> output validates against schema.</li>
+<li><b>Eval suites</b> with real model calls on a golden set, scored by assertions and LLM judges; run on prompt or model changes, track scores over time.</li>
+</ul>`,
+  fu:[] },
+
+{ cat:"eng", lvl:2, hot:true,
+  q:"SQL: find the second highest salary in each department.",
+  a:`<pre><code>SELECT department_id, employee_id, salary
+FROM (
+  SELECT department_id, employee_id, salary,
+         DENSE_RANK() OVER (
+           PARTITION BY department_id
+           ORDER BY salary DESC) AS rnk
+  FROM employees
+) t
+WHERE rnk = 2;</code></pre>
+<p>Explain the choice: <code>DENSE_RANK</code> handles ties (two people at the top salary both get rank 1, so rank 2 is the next distinct salary). <code>ROW_NUMBER</code> would pick arbitrarily among ties.</p>`,
+  fu:["ROW_NUMBER vs RANK vs DENSE_RANK?"] },
+
+{ cat:"eng", lvl:2,
+  q:"SQL: remove duplicates keeping the latest record per ID.",
+  a:`<pre><code>SELECT * FROM (
+  SELECT *, ROW_NUMBER() OVER (
+    PARTITION BY record_id
+    ORDER BY updated_at DESC) AS rn
+  FROM events
+) t
+WHERE rn = 1;</code></pre>
+<p>In BigQuery you can write this with <code>QUALIFY rn = 1</code>. This is the standard pattern for at-least-once Pub/Sub data.</p>`,
+  fu:[] },
+
+{ cat:"eng", lvl:2,
+  q:"How do database indexes work, and when do they hurt?",
+  a:`<ul>
+<li>A B-tree index keeps sorted keys with pointers to rows, turning full scans into log-time lookups.</li>
+<li>Composite indexes follow the leftmost-prefix rule.</li>
+<li><b>Costs:</b> slow down writes, use storage; useless on low-selectivity columns or when functions wrap the column.</li>
+<li>Check with <code>EXPLAIN ANALYZE</code>.</li>
+</ul>`,
+  fu:[] },
+
+{ cat:"eng", lvl:2,
+  q:"SQL (PostgreSQL) versus NoSQL (MongoDB): when would you choose each?",
+  a:`<ul>
+<li><b>PostgreSQL:</b> relational data, joins, transactions and strong consistency, well-known schema.</li>
+<li><b>MongoDB:</b> flexible or evolving document schemas, nested data read together, horizontal scaling.</li>
+<li>Postgres with JSONB covers many "flexible" cases, so default to Postgres unless there's a clear reason.</li>
+</ul>`,
+  fu:[] },
+
+{ cat:"eng", lvl:3,
+  q:"Python coding: implement a rate-limited async fetcher.",
+  a:`<pre><code>import asyncio, httpx
+
+async def fetch_all(urls, max_concurrency=5, retries=3):
+    sem = asyncio.Semaphore(max_concurrency)
+    async with httpx.AsyncClient(timeout=10) as client:
+        async def fetch(url):
+            async with sem:
+                for attempt in range(retries):
+                    try:
+                        r = await client.get(url)
+                        if r.status_code == 429:
+                            raise httpx.HTTPStatusError(
+                                "rate limited", request=r.request, response=r)
+                        r.raise_for_status()
+                        return url, r.json()
+                    except (httpx.HTTPError,) as e:
+                        if attempt == retries - 1:
+                            return url, {"error": str(e)}
+                        await asyncio.sleep(2 ** attempt)
+        return await asyncio.gather(*(fetch(u) for u in urls))</code></pre>
+<p>Talk through: the semaphore caps concurrency, backoff doubles, errors are returned rather than crashing the whole batch.</p>`,
+  fu:["How would you add a requests-per-second limit?"] },
+
+{ cat:"eng", lvl:2,
+  q:"Python basics they might check quickly: list vs tuple, generators, decorators.",
+  a:`<ul>
+<li><b>List</b> mutable; <b>tuple</b> immutable and hashable (usable as dict keys).</li>
+<li><b>Generator:</b> yields values lazily; memory efficient for large streams.</li>
+<li><b>Decorator:</b> function wrapping another to add behaviour (retry, logging, timing, auth).</li>
+<li><b>Context manager:</b> <code>with</code> for resource setup and cleanup.</li>
+<li>Mutable default argument pitfall: <code>def f(x=[])</code> shares one list across calls.</li>
+</ul>`,
+  fu:[] },
+
+/* ================= SYSTEM DESIGN ================= */
+{ cat:"sd", lvl:3, hot:true,
+  q:"Design a document question-answering system (enterprise RAG) for 10,000 employees.",
+  a:`<p><b>1. Clarify:</b> document types and volume, update frequency, access control, latency target, citation requirements.</p>
+<p><b>2. Ingestion pipeline:</b> connectors (Drive, SharePoint) → Pub/Sub event on change → parsing workers → chunking with metadata (source, ACLs, date) → embeddings → vector store plus keyword index.</p>
+<p><b>3. Query path:</b> API gateway with auth → query rewriting → hybrid retrieval <i>filtered by the user's permissions</i> → reranking → LLM generation with citations → streamed response.</p>
+<p><b>4. Scale:</b> stateless API pods autoscaled on GKE; embedding in batch; cache frequent queries and embeddings.</p>
+<p><b>5. Quality:</b> eval set, thumbs up/down feedback, tracing.</p>
+<p><b>6. Trade-offs:</b> chunk size, cost versus model quality, freshness versus re-index cost.</p>`,
+  fu:["How do you enforce document permissions?","How do you handle a deleted document?"],
+  tip:"Say the permission filter out loud. Leaking documents across users is the classic RAG mistake managers look for." },
+
+{ cat:"sd", lvl:3, hot:true,
+  q:"Design a scalable AI report generation service (generalizing your J&J system).",
+  a:`<p><b>Requirements:</b> many report types, many concurrent requests, drafts in minutes, human approval, audit trail.</p>
+<ul>
+<li><b>API service:</b> <code>POST /reports</code> returns job ID (202). Idempotency key prevents duplicates.</li>
+<li><b>Queue:</b> Pub/Sub or Cloud Tasks decouples requests from work and absorbs spikes.</li>
+<li><b>Workers:</b> run the workflow; each step checkpointed in Postgres; retries with backoff; scale on queue depth.</li>
+<li><b>LLM gateway:</b> central module for model calls: rate limiting against quota, retries, fallback model, token logging.</li>
+<li><b>Templates registry:</b> report types as config (sections, prompts, validators) so new types don't need code.</li>
+<li><b>Review UI and API:</b> approve/edit; state machine DRAFT → IN_REVIEW → APPROVED/REJECTED.</li>
+<li><b>Storage:</b> Postgres (jobs, state), GCS (files), BigQuery (analytics, feedback).</li>
+<li><b>Observability:</b> tracing, cost per report, quality metrics.</li>
+</ul>`,
+  fu:["What's the bottleneck at 100x load?"],
+  tip:"Answer the follow-up: the bottleneck is usually LLM quota, not compute. Mention quota requests, batching, smaller models and caching." },
+
+{ cat:"sd", lvl:3, hot:true,
+  q:"Design a customer support agent that can answer questions and take actions (refunds, order lookup).",
+  a:`<ul>
+<li><b>Components:</b> chat front end → agent service → tools (order lookup, refund, ticket creation) exposed via MCP or function calling → knowledge base RAG for policies.</li>
+<li><b>Guardrails:</b> read tools freely; write tools (refunds) require policy checks in code and limits (amount thresholds), with human approval above a limit.</li>
+<li><b>State:</b> conversation memory in a store keyed by session; summarize long histories.</li>
+<li><b>Escalation:</b> handoff to a human with full context on low confidence, anger or explicit request.</li>
+<li><b>Security:</b> tools act only on the authenticated user's data (enforce in the tool, not the prompt); prompt injection defences.</li>
+<li><b>Evaluation:</b> simulated conversations, task success rate, resolution without escalation, CSAT.</li>
+</ul>`,
+  fu:[] },
+
+{ cat:"sd", lvl:3,
+  q:"Design a real-time data pipeline that feeds analytics and an AI app (like your GCP ETL).",
+  a:`<ul>
+<li><b>Sources</b> publish change events (or CDC with Datastream from Cloud SQL) to Pub/Sub.</li>
+<li><b>Dataflow streaming:</b> validate schema, dedupe on event ID, enrich, route bad records to a dead-letter table.</li>
+<li><b>Sinks:</b> BigQuery (partitioned by date) for analytics; a feature or vector store for the AI app.</li>
+<li><b>Batch backfills</b> via Dataproc or Dataflow batch.</li>
+<li><b>Orchestration:</b> Cloud Composer (Airflow) for scheduled jobs.</li>
+<li><b>Data quality:</b> row counts, null checks, freshness alerts.</li>
+<li><b>Schema evolution:</b> versioned schemas; backward-compatible changes.</li>
+</ul>`,
+  fu:[] },
+
+{ cat:"sd", lvl:3,
+  q:"Design a multi-agent research assistant (generalizing your Market Researcher).",
+  a:`<ul>
+<li><b>Planner agent</b> breaks the request into sub-questions.</li>
+<li><b>Worker agents</b> in parallel: each owns a source type (news, filings, social), fetches, summarizes with citations.</li>
+<li><b>Ranker:</b> score findings (relevance, recency, credibility, corroboration).</li>
+<li><b>Synthesizer agent</b> writes the report; a <b>critic</b> checks claims are supported.</li>
+<li><b>Infra:</b> async fetch layer with per-source rate limits and caching; job queue for long runs; results stored for reuse.</li>
+<li><b>Cost control:</b> cheap model for workers, strong model for synthesis; prompt caching.</li>
+<li><b>Trade-off:</b> multi-agent adds latency and cost; justify with parallelism and specialization.</li>
+</ul>`,
+  fu:[] },
+
+{ cat:"sd", lvl:3,
+  q:"Design an LLM gateway used by many teams in a company.",
+  a:`<ul>
+<li>Single internal API in front of multiple providers and models.</li>
+<li>Auth and per-team quotas and budgets; usage metering.</li>
+<li>Rate limiting and queuing to respect provider limits.</li>
+<li>Retries, fallback to alternate models, circuit breakers.</li>
+<li>Logging and tracing with PII redaction; optional response caching.</li>
+<li>Policy enforcement: allowed models per data classification.</li>
+</ul>`,
+  fu:[] },
+
+{ cat:"sd", lvl:2,
+  q:"What general framework should you follow in any system design question?",
+  a:`<ol>
+<li><b>Clarify requirements</b> (2–3 min): users, scale, latency, consistency, what's in scope.</li>
+<li><b>Estimate</b> roughly: requests per second, data size, token cost.</li>
+<li><b>High-level design:</b> draw boxes and data flow.</li>
+<li><b>Deep dive</b> on one or two components the interviewer cares about.</li>
+<li><b>Trade-offs and bottlenecks:</b> failure modes, scaling, monitoring.</li>
+</ol>
+<p>For AI systems add: evaluation, guardrails, cost, and human oversight.</p>`,
+  fu:[] },
+
+/* ================= BEHAVIORAL ================= */
+{ cat:"beh", lvl:1, hot:true,
+  q:"Tell me about a time something failed in production or a project went wrong.",
+  a:`<p>Prepare a real story. STAR structure:</p>
+<ul>
+<li><b>Situation:</b> e.g., LLM calls started hitting rate limits during a batch run, or a deployment broke in one environment.</li>
+<li><b>Task:</b> your responsibility.</li>
+<li><b>Action:</b> how you diagnosed (logs, traces), the short-term fix, the long-term fix (backoff, quotas, tests).</li>
+<li><b>Result:</b> impact and what changed in the process afterwards.</li>
+</ul>
+<p>Own it; focus on learning and prevention.</p>`,
+  fu:[] },
+
+{ cat:"beh", lvl:1, hot:true,
+  q:"Tell me about a disagreement with a teammate or stakeholder.",
+  a:`<ul>
+<li>Pick a technical disagreement (framework choice, how much to automate versus review).</li>
+<li>Show you listened, used data or a quick prototype to decide, and committed to the decision even if it wasn't yours.</li>
+<li>Never make the other person look bad.</li>
+</ul>`,
+  fu:[] },
+
+{ cat:"beh", lvl:1, hot:true,
+  q:"How do you explain AI output limitations to non-technical stakeholders (e.g., medical reviewers)?",
+  a:`<ul>
+<li>Plain language: "It drafts; you decide."</li>
+<li>Show examples of where it's strong and where it makes mistakes.</li>
+<li>Build trust with citations to sources and consistent formats.</li>
+<li>Set expectations with metrics from the pilot.</li>
+</ul>`,
+  fu:[] },
+
+{ cat:"beh", lvl:1,
+  q:"How do you prioritize when you have multiple urgent requests?",
+  a:`<ul>
+<li>Clarify impact and deadlines with the requesters.</li>
+<li>Rank by business impact and dependencies; unblock others first.</li>
+<li>Communicate trade-offs to your manager transparently rather than silently dropping things.</li>
+</ul>`,
+  fu:[] },
+
+{ cat:"beh", lvl:1,
+  q:"How do you keep up with the fast pace of AI?",
+  a:`<ul>
+<li>Name real sources: provider docs and changelogs, papers you've read, newsletters, open-source repos.</li>
+<li>"I build small projects to try new things. The Market Researcher came from wanting to learn prompt caching and multi-agent patterns."</li>
+</ul>`,
+  fu:["What's something recent in AI you found interesting?"],
+  tip:"Have one recent development ready that you can discuss for two minutes." },
+
+{ cat:"beh", lvl:1,
+  q:"Tell me about a time you learned a new technology quickly.",
+  a:`<p>Good candidates: Google ADK at J&amp;J (new framework, limited community examples), or R Shiny reactivity at SLU. Explain how you learned (docs, small prototype, reading source), and how fast you shipped something real.</p>`,
+  fu:[] },
+
+{ cat:"beh", lvl:1,
+  q:"Where do you see yourself in 3 to 5 years?",
+  a:`<p>"Owning the architecture of AI systems end to end, as a senior engineer who also mentors others. I've enjoyed leading at SLU and want to grow both technically and in helping a team ship reliable AI."</p>`,
+  fu:[] },
+
+{ cat:"beh", lvl:1, hot:true,
+  q:"Do you have any questions for me?",
+  a:`<p>Always ask two or three. Good ones for a manager:</p>
+<ul>
+<li>"What does success look like in this role in the first 90 days?"</li>
+<li>"What's the biggest technical challenge the team is facing right now?"</li>
+<li>"How does the team evaluate LLM features before they ship?"</li>
+<li>"How is the team split between building new things and maintaining existing ones?"</li>
+<li>"How do you like to give feedback to your team?"</li>
+</ul>`,
+  fu:[] }
+];
+
+
+const NUMBERS = [
+  { n:"~2 yrs", what:"Industry experience", p:"Pozent/J&J (Aug 2025–now), SLU tech lead (Jan–Aug 2025), HighRadius intern (2022). Be ready to explain how they add up." },
+  { n:"2–3 wks → <1 min", what:"Report turnaround", p:"Old end-to-end manual process versus AI draft generation time. Same-day approvals come from reviewing a complete draft instead of writing one." },
+  { n:"5+", what:"Agentic workflow steps", p:"Have your exact list: intake, context gathering, extraction, drafting, validation, rendering, review." },
+  { n:"2+", what:"Microservices", p:"Flask/FastAPI services with Vertex AI, LangChain and ADK. Know what each one does." },
+  { n:"2", what:"GKE environments", p:"Likely dev/staging and prod. Know how config differs and how promotion works." },
+  { n:"100,000+", what:"Records supported", p:"Indexed Cloud SQL, pagination, partitioned BigQuery tables, batch jobs." },
+  { n:"4", what:"GCP data services", p:"Pub/Sub, Dataflow, Dataproc, BigQuery. Know why each exists." },
+  { n:"2", what:"Quickbase integrations", p:"What data flowed, in which direction, and how it was triggered." },
+  { n:"2 → 1", what:"MeltShiny consolidation", p:"Two legacy tools merged into one browser-accessible R Shiny platform." },
+  { n:"4", what:"Thermodynamic parameters", p:"Typically ΔH, ΔS, ΔG and Tm, from nonlinear fits of melt curves." },
+  { n:"4 / 10+", what:"Mentees / sprint cycles", p:"Undergraduate contributors mentored across weekly reviews." },
+  { n:"30+ / 50+", what:"PRs reviewed / issues triaged", p:"Protected branches, CI checks, labels and priorities." },
+  { n:"50,000+", what:"Invoices trained on", p:"HighRadius payment-delay regression, time-based split." },
+  { n:"15+", what:"Engineered features", p:"Customer history, amount, terms, calendar features, open invoice counts." },
+  { n:"98%", what:"CI/CD success rate", p:"Reproducible Docker builds, pinned dependencies, fixed flaky tests." },
+  { n:"80%+", what:"Test coverage", p:"PyTest, JUnit, Mockito, enforced in CI." },
+  { n:"20+", what:"Market Researcher sources", p:"News APIs, SEC EDGAR, Reddit, via async ETL with rate limiting and caching." },
+  { n:"3+ hrs/wk", what:"Manual research replaced", p:"One-click React/FastAPI workflow." },
+  { n:"4", what:"Ranker signals", p:"Know your real four and why each is weighted as it is." },
+  { n:"5+ / 10+", what:"SQL query types / tables", p:"Filters, aggregations, joins, group-by, subqueries across PostgreSQL tables." },
+  { n:"3.94", what:"MS GPA", p:"Saint Louis University, MS Computer Science, 2025." }
+];
+
+/* ---------- state ---------- */
+QUESTIONS.forEach((q,i)=>{ q.id = "q"+i; });
+const STORE_KEY = "abhilash-prep-v1";
+let status = {};
+try { status = JSON.parse(localStorage.getItem(STORE_KEY) || "{}") || {}; } catch(e){ status = {}; }
+function save(){ try { localStorage.setItem(STORE_KEY, JSON.stringify(status)); } catch(e){} }
+
+const state = { cat:"all", q:"", hot:false, lvls:new Set(), rev:false, fresh:false, expand:false, open:new Set() };
+const catById = Object.fromEntries(CATEGORIES.map(c=>[c.id,c]));
+const LVL = {1:"Warm-up",2:"Core",3:"Deep dive"};
+
+const $ = s => document.querySelector(s);
+const esc = s => s.replace(/[&<>"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const strip = html => html.replace(/<[^>]+>/g," ");
+
+/* ---------- theme ---------- */
+try { const t = localStorage.getItem("abhilash-prep-theme"); if (t) document.documentElement.dataset.theme = t; } catch(e){}
+$("#themeBtn").addEventListener("click", ()=>{
+  const cur = document.documentElement.dataset.theme ||
+    (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  const next = cur === "dark" ? "light" : "dark";
+  document.documentElement.dataset.theme = next;
+  try { localStorage.setItem("abhilash-prep-theme", next); } catch(e){}
+});
+
+/* ---------- tabs ---------- */
+document.querySelectorAll(".tab").forEach(t=>t.addEventListener("click", ()=>{
+  document.querySelectorAll(".tab").forEach(x=>x.setAttribute("aria-selected", x===t));
+  document.querySelectorAll(".view").forEach(v=>v.hidden = v.id !== "view-"+t.dataset.view);
+  if (t.dataset.view === "drill") { buildDrillPool(); if (!drill.cur) nextDrill(); }
+  window.scrollTo({top:0});
+}));
+
+/* ---------- stats ---------- */
+function renderStats(){
+  const total = QUESTIONS.length;
+  const ok = QUESTIONS.filter(q=>status[q.id]==="ok").length;
+  const rev = QUESTIONS.filter(q=>status[q.id]==="rev").length;
+  $("#statTotal").textContent = total; $("#statOk").textContent = ok; $("#statRev").textContent = rev;
+  $("#meterFill").style.width = (ok/total*100)+"%";
+}
+
+/* ---------- sidebar ---------- */
+function renderCats(){
+  const all = [{id:"all",name:"All topics"}].concat(CATEGORIES);
+  $("#catList").innerHTML = all.map(c=>{
+    const qs = c.id==="all" ? QUESTIONS : QUESTIONS.filter(q=>q.cat===c.id);
+    const ok = qs.filter(q=>status[q.id]==="ok").length;
+    return `<button class="cat-btn" data-cat="${c.id}" aria-pressed="${state.cat===c.id}">
+      <span class="row"><span>${esc(c.name)}</span><em>${ok}/${qs.length}</em></span>
+      <span class="bar"><i style="width:${qs.length? ok/qs.length*100:0}%"></i></span></button>`;
+  }).join("");
+  $("#catList").querySelectorAll(".cat-btn").forEach(b=>b.addEventListener("click", ()=>{
+    state.cat = b.dataset.cat; renderCats(); renderList();
+    $("#catHead").scrollIntoView({block:"start"});
+  }));
+}
+
+/* ---------- list ---------- */
+function filtered(){
+  const term = state.q.trim().toLowerCase();
+  return QUESTIONS.filter(q=>{
+    if (state.cat!=="all" && q.cat!==state.cat) return false;
+    if (state.hot && !q.hot) return false;
+    if (state.lvls.size && !state.lvls.has(q.lvl)) return false;
+    if (state.rev && status[q.id]!=="rev") return false;
+    if (state.fresh && status[q.id]) return false;
+    if (term){
+      const hay = (q.q+" "+strip(q.a)+" "+(q.fu||[]).join(" ")+" "+(q.tip||"")).toLowerCase();
+      if (!term.split(/\s+/).every(w=>hay.includes(w))) return false;
+    }
+    return true;
+  });
+}
+
+function statusTag(id){
+  if (status[id]==="ok") return `<span class="tag ok">Confident</span>`;
+  if (status[id]==="rev") return `<span class="tag rev">Needs review</span>`;
+  return "";
+}
+
+function answerHTML(q){
+  let h = `<div class="answer">${q.a}</div>`;
+  if (q.fu && q.fu.length) h += `<div class="box fu"><h4>Likely follow-ups</h4><ul>${q.fu.map(f=>`<li>${esc(f)}</li>`).join("")}</ul></div>`;
+  if (q.tip) h += `<div class="box tip"><h4>Coaching note</h4>${esc(q.tip)}</div>`;
+  return h;
+}
+
+function renderList(){
+  const c = state.cat==="all" ? {name:"All topics", blurb:"Everything in one place. Filter by likelihood or depth, or search for a keyword."} : catById[state.cat];
+  $("#catHead").innerHTML = `<h2>${esc(c.name)}</h2><p>${esc(c.blurb)}</p>`;
+  const list = filtered();
+  $("#resultCount").textContent = `${list.length} ${list.length===1?"question":"questions"} shown`;
+  if (!list.length){
+    $("#qList").innerHTML = `<div class="empty">No questions match these filters. Clear the search or turn off a filter to see more.</div>`;
+    return;
+  }
+  $("#qList").innerHTML = list.map(q=>{
+    const open = state.expand || state.open.has(q.id);
+    return `<article class="q" id="${q.id}" ${open?"open":""}>
+      <button class="q-head" aria-expanded="${open}" aria-controls="${q.id}-b">
+        <span class="q-title">${esc(q.q)}
+          <span class="q-meta">
+            ${state.cat==="all"?`<span class="tag">${esc(catById[q.cat].name)}</span>`:""}
+            <span class="tag">${LVL[q.lvl]}</span>
+            ${q.hot?`<span class="tag hot">Likely</span>`:""}
+            ${statusTag(q.id)}
+          </span>
+        </span>
+        <span class="chev" aria-hidden="true">▾</span>
+      </button>
+      <div class="q-body" id="${q.id}-b">
+        ${answerHTML(q)}
+        <div class="status">
+          <button class="ok" data-id="${q.id}" data-s="ok" aria-pressed="${status[q.id]==="ok"}">I've got it</button>
+          <button class="rev" data-id="${q.id}" data-s="rev" aria-pressed="${status[q.id]==="rev"}">Review again</button>
+          ${status[q.id]?`<button data-id="${q.id}" data-s="">Clear mark</button>`:""}
+        </div>
+      </div>
+    </article>`;
+  }).join("");
+}
+
+$("#qList").addEventListener("click", e=>{
+  const head = e.target.closest(".q-head");
+  if (head){
+    const card = head.parentElement, id = card.id;
+    const isOpen = card.hasAttribute("open");
+    if (isOpen){ card.removeAttribute("open"); state.open.delete(id); }
+    else { card.setAttribute("open",""); state.open.add(id); }
+    head.setAttribute("aria-expanded", !isOpen);
+    return;
+  }
+  const sb = e.target.closest(".status button");
+  if (sb){
+    const id = sb.dataset.id, s = sb.dataset.s;
+    if (s) status[id] = s; else delete status[id];
+    save(); state.open.add(id); renderStats(); renderCats(); renderList();
+    const el = document.getElementById(id); if (el) el.querySelector(".q-head").focus();
+  }
+});
+
+let searchT;
+$("#search").addEventListener("input", e=>{ clearTimeout(searchT); searchT = setTimeout(()=>{ state.q = e.target.value; renderList(); },120); });
+function toggleChip(btn, fn){ btn.addEventListener("click", ()=>{ const on = btn.getAttribute("aria-pressed")!=="true"; btn.setAttribute("aria-pressed", on); fn(on); renderList(); }); }
+toggleChip($("#fHot"), on=>state.hot=on);
+toggleChip($("#fRev"), on=>state.rev=on);
+toggleChip($("#fNew"), on=>state.fresh=on);
+toggleChip($("#expandAll"), on=>{ state.expand=on; if(!on) state.open.clear(); $("#expandAll").textContent = on?"Collapse all":"Expand all"; });
+document.querySelectorAll("[data-lvl]").forEach(b=>toggleChip(b, on=>{ const l=+b.dataset.lvl; on?state.lvls.add(l):state.lvls.delete(l); }));
+
+/* ---------- drill ---------- */
+const drill = { pool:[], cur:null, t0:0, timer:null };
+$("#drillCat").innerHTML = `<option value="all">All topics</option>` + CATEGORIES.map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join("");
+function buildDrillPool(){
+  const cat = $("#drillCat").value, set = $("#drillSet").value;
+  drill.pool = QUESTIONS.filter(q=>{
+    if (cat!=="all" && q.cat!==cat) return false;
+    if (set==="hot" && !q.hot) return false;
+    if (set==="rev" && status[q.id]!=="rev") return false;
+    if (set==="new" && status[q.id]) return false;
+    return true;
+  });
+  $("#drillCount").textContent = `${drill.pool.length} in this set`;
+}
+function tick(){ const s = Math.floor((Date.now()-drill.t0)/1000); $("#drillTimer").textContent = `${Math.floor(s/60)}:${String(s%60).padStart(2,"0")}`; }
+function nextDrill(){
+  buildDrillPool();
+  clearInterval(drill.timer);
+  if (!drill.pool.length){
+    drill.cur = null;
+    $("#drillLabel").textContent = "";
+    $("#drillQ").textContent = "Nothing left in this set. Pick another topic or switch to all questions.";
+    $("#drillA").hidden = true; $("#drillTimer").textContent = "";
+    return;
+  }
+  let pick, tries = 0;
+  do { pick = drill.pool[Math.floor(Math.random()*drill.pool.length)]; tries++; }
+  while (drill.pool.length>1 && drill.cur && pick.id===drill.cur.id && tries<10);
+  drill.cur = pick;
+  $("#drillLabel").textContent = catById[pick.cat].name + (pick.hot?", likely":"");
+  $("#drillQ").textContent = pick.q;
+  $("#drillA").innerHTML = answerHTML(pick);
+  $("#drillA").hidden = true;
+  $("#revealBtn").textContent = "Show answer";
+  drill.t0 = Date.now(); tick(); drill.timer = setInterval(tick, 1000);
+}
+function reveal(){
+  if (!drill.cur) return;
+  const a = $("#drillA"); a.hidden = !a.hidden;
+  $("#revealBtn").textContent = a.hidden ? "Show answer" : "Hide answer";
+  if (!a.hidden) clearInterval(drill.timer);
+}
+function markDrill(s){ if (!drill.cur) return; status[drill.cur.id] = s; save(); renderStats(); renderCats(); renderList(); nextDrill(); }
+$("#revealBtn").addEventListener("click", reveal);
+$("#drillOk").addEventListener("click", ()=>markDrill("ok"));
+$("#drillRev").addEventListener("click", ()=>markDrill("rev"));
+$("#drillNext").addEventListener("click", nextDrill);
+$("#drillCat").addEventListener("change", nextDrill);
+$("#drillSet").addEventListener("change", nextDrill);
+document.addEventListener("keydown", e=>{
+  if ($("#view-drill").hidden) return;
+  if (["INPUT","SELECT","TEXTAREA"].includes(e.target.tagName)) return;
+  if (e.key===" "){ e.preventDefault(); reveal(); }
+  else if (e.key==="g"||e.key==="G") markDrill("ok");
+  else if (e.key==="r"||e.key==="R") markDrill("rev");
+  else if (e.key==="ArrowRight") nextDrill();
+});
+
+/* ---------- numbers ---------- */
+$("#numGrid").innerHTML = NUMBERS.map(n=>`<div class="num"><b>${esc(n.n)}</b><div class="what">${esc(n.what)}</div><p>${esc(n.p)}</p></div>`).join("");
+
+renderStats(); renderCats(); renderList();
+</script>
+</body>
+</html>
